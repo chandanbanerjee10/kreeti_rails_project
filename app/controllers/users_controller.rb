@@ -37,7 +37,8 @@ class UsersController < ApplicationController
             flash[:notice] = "Your account information was successfully updated!"
             redirect_to @user
         else
-            render 'edit'
+            flash.now[:notice] = "There was an error updating your account information."
+            render 'edit', status: :unprocessable_entity
         end
     end
 
@@ -47,7 +48,8 @@ class UsersController < ApplicationController
 
     def destroy
         @user.destroy
-        flash[:danger] = "Account and articles successfully deleted"
+        flash[:danger] = "Account successfully deleted"
+        redirect_to users_path, status: :see_other
     end
 
     private
