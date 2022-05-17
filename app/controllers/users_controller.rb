@@ -17,12 +17,18 @@ class UsersController < ApplicationController
     def create
         # debugger
         @user = User.new(user_params)
-        if @user.save
-            flash[:notice] = "user was created successfully."
+        if @user.save && @user.role == "candidate"
+            flash[:notice] = "candidate was created successfully."
             redirect_to @user
+        elsif @user.save && @user.role == "recruiter"
+            flash[:notice] = "recruiter was created successfully."
+            redirect_to root_path
 
+        elsif @user.save && @user.role == "admin"
+            flash[:notice] = "admin was created successfully."
+            redirect_to about_path
         else
-            render :new, status: :unprocessable_entity
+            render 'new', status: :unprocessable_entity
         end
     end
 
@@ -46,7 +52,7 @@ class UsersController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:username,:email,:password)
+            params.require(:user).permit(:username,:email,:password,:role)
         end
 
         def set_user
