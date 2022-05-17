@@ -1,0 +1,62 @@
+class UsersController < ApplicationController
+    before_action :set_user, only: [:edit, :update, :show, :destroy]
+    # before_action :require_user, only: [:edit, :update]
+    # before_action :require_same_user, only: [:edit, :update, :destroy]
+
+    def new
+        @user = User.new
+    end
+
+    def show
+        
+    end
+    
+    def edit
+    end
+
+    def create
+        # debugger
+        @user = User.new(user_params)
+        if @user.save
+            flash[:notice] = "user was created successfully."
+            redirect_to @user
+
+        else
+            render :new, status: :unprocessable_entity
+        end
+    end
+
+    def update
+        if @user.update(user_params)
+            flash[:notice] = "Your account information was successfully updated!"
+            redirect_to @user
+        else
+            render 'edit'
+        end
+    end
+
+    def index
+        @users = User.all
+    end
+
+    def destroy
+        @user.destroy
+        flash[:danger] = "Account and articles successfully deleted"
+    end
+
+    private
+        def user_params
+            params.require(:user).permit(:username,:email,:password)
+        end
+
+        def set_user
+            @user = User.find(params[:id])
+        end
+
+        def require_same_user
+            if current_user != @user
+              flash[:danger] = "You can only edit or delete your own account"
+              redirect_to @user
+            end
+        end
+end
