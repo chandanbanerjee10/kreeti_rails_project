@@ -16,15 +16,15 @@ class UsersController < ApplicationController
 
     def create
         # debugger
-        @user = User.new(user_params)
-        if @user.save && @user.role == "candidate"
+        user = User.new(user_params)
+        if user.save && user.role == "candidate"
             flash[:notice] = "candidate was created successfully."
-            redirect_to @user
-        elsif @user.save && @user.role == "recruiter"
+            redirect_to user
+        elsif user.save && user.role == "recruiter"
             flash[:notice] = "recruiter was created successfully."
             redirect_to root_path
 
-        elsif @user.save && @user.role == "admin"
+        elsif user.save && user.role == "admin"
             flash[:notice] = "admin was created successfully."
             redirect_to about_path
         else
