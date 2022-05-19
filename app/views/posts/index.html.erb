@@ -1,0 +1,12 @@
+<h1>Listing Posts</h1>
+
+
+<% @posts.each do |post|%>
+    <li><%=post.name%></li>
+    <li><%=post.post_description%></li>
+    <li><%=post.username%></li>
+    <li><%=post.phone_number%></li>
+    <li><%=post.city%></li>
+    <li><%=link_to post.file.filename, url_for(post.file)%></li>
+    <br>
+<%end%>

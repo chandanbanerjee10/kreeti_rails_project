@@ -1,0 +1,12 @@
+<h1>Post Show</h1>
+
+<ul>
+    <li><%=@post.name%></li>
+    <li><%=@post.post_description%></li>
+    <li><%=@post.username%></li>
+    <li><%=@post.phone_number%></li>
+    <li><%=@post.city%></li>
+    <li><%=link_to @post.file.filename, url_for(@post.file)%></li>
+</ul>
+
+<%=link_to "Create a new Post", new_post_path%>

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :require_user , only: [:new, :create] 
+    before_action :require_user , only: [:new, :create, :index] 
 
 
     def new
@@ -18,9 +18,15 @@ class PostsController < ApplicationController
         end
     end
     
+    def show
+        @post = Post.find(params[:id])
+    end
 
+    def index
+        @posts = Post.all
+    end
     private
     def post_params
-        params.require(:post).permit(:name, :post_description, :username, :phone_number, :city)
+        params.require(:post).permit(:name, :post_description, :username, :phone_number, :city, :file)
     end
 end
