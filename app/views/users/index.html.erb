@@ -1,9 +1,8 @@
-<h1>List of users</h1>
+<h1 id = "list">List of users</h1>
 
 <% @users.each do |user|%>
     <%= link_to user.username, user%>
 <%end%>
 <br>
 <br>
-<%= link_to "Home Page", root_path%>
 <%= link_to "Create a new User", signup_path%>
