@@ -6,7 +6,9 @@
     <li><%=@post.username%></li>
     <li><%=@post.phone_number%></li>
     <li><%=@post.city%></li>
+    <% if @post.file.attached?%>
     <li><%=link_to @post.file.filename, url_for(@post.file)%></li>
+    <%end%>
 </ul>
 
 <%=link_to "Create a new Post", new_post_path%>
