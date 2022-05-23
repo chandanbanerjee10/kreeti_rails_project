@@ -1,0 +1,7 @@
+<h1>List all sectors</h1>
+
+<%@sectors.each do |s|%>
+    <li><%= link_to s.name, admin_sectors_path(s)%></li>
+<%end%>
+
+<%= link_to "Create a new Sector", admin_sectors_new_path %>

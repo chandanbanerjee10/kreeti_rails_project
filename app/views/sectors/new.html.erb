@@ -1,0 +1,10 @@
+<h1>Create a new Sector</h1>
+
+<%= form_with(model: @sector, url: admin_sectors_path) do |f|%>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %> 
+    </div>
+    <br>
+        <%=f.submit "Submit"%>
+<%end%>
