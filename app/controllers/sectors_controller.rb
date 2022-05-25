@@ -1,4 +1,4 @@
-class SectorsController < ApplicationController
+class  SectorsController < ApplicationController
     before_action :require_user , only: [:index] 
     before_action :require_admin, only: [:new, :create] 
 
@@ -7,12 +7,11 @@ class SectorsController < ApplicationController
     end
 
     def create
-        # debugger
         @sector= Sector.new(sector_params)
         @sector.user = current_user
         if @sector.save
           flash[:success] = "Sector successfully created"
-          redirect_to admin_sectors_path
+          redirect_to sectors_path
         else
           flash[:error] = "Something went wrong"
           render 'new' , status: :unprocessable_entity
@@ -26,6 +25,28 @@ class SectorsController < ApplicationController
 
     def index
         @sectors = Sector.all
+    end
+
+    def destroy
+        @sector = Sector.find(params[:id])
+        @sector.destroy
+        flash[:danger] = "Sector successfully deleted"
+        redirect_to sectors_path, status: :see_other
+    end
+
+    def edit
+        @sector = Sector.find(params[:id])
+    end
+
+    def update
+        @sector = Sector.find(params[:id])
+        if @sector.update(sector_params)
+            flash[:success] = "Sector successfully updated"
+            redirect_to sectors_path
+        else
+            flash[:error] = "Something went wrong"
+            render 'edit' , status: :unprocessable_entity
+        end
     end
     private
     def sector_params

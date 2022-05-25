@@ -3,3 +3,8 @@
 <ul>
     <li><%=@sector.name%></li>
 </ul>
+<%= link_to "Edit Sector", edit_sector_path%>
+<%=link_to "Delete Sector", sector_path, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }%>

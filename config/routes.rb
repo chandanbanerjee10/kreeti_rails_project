@@ -14,12 +14,7 @@ Rails.application.routes.draw do
   #  Posts
     resources :posts
 
-  #  Admin
-    get "admin/sectors/new", to: "sectors#new"
-    get "admin/sectors", to: "sectors#index"
-    get "admin/sectors/:id", to: "sectors#show"
-    post "admin/sectors", to: "sectors#create"
-    # namespace :admin do
-    #   resources :sectors
-    # end
+    scope :admin do
+      resources :sectors
+    end
 end
