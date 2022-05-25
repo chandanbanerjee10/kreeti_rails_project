@@ -1,0 +1,18 @@
+<h1>Job Show</h1>
+
+<ul>
+    <li><%=@job.title%></li>
+    <li><%=@job.job_description%></li>
+    <li><%=@job.job_location%></li>
+    <li><%=@job.keyskills%></li>
+    <li><%=@job.sector.name%></li>
+    <li><%=@job.type.name%></li>
+    <li><%=@job.user.username%></li>
+</ul>
+
+<%=link_to "Create a new Job", new_job_path%>
+<%=link_to "Edit Job", edit_job_path%>
+<%=link_to "Delete Job", job_path, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }%>

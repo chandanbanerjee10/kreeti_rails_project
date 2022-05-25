@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Create a new Job</h1>
+    <%if @job.errors.any?%>
+    <h4 class="alert-heading">The following errors prevented the job from being saved</h4>
+        <ul>
+            <% @job.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+    <%end%>
+    <%= form_with(model: @job) do |f|%>
+        <div>
+            <%= f.label :title %>
+            <%= f.text_field :title %> 
+        </div>
+        <br>
+        <div>
+            <%= f.label :job_description %>
+            <%= f.text_area :job_description %> 
+        </div>
+        <br>
+        <div>
+            <%= f.label :job_location %>
+            <%= f.text_field :job_location %> 
+        </div>
+        <br>
+        <div>
+            <%= f.label :keyskills %>
+            <%= f.text_field :keyskills %> 
+        </div>
+        <br>
+        <div>
+            <%= f.label :sector%>
+            <%= f.collection_select(:sector_id, Sector.all, :id, :name,
+                { prompt: "Select a Job Sector"}) %>
+        </div>
+        <br>
+        <div>
+            <%= f.label :type%>
+            <%= f.collection_select(:type_id, Type.all, :id, :name,
+                { prompt: "Select a Job Type"}) %>
+        </div>
+        <br>
+        <%=f.submit "Submit"%>
+    <%end%>
+</div>

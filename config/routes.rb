@@ -11,11 +11,16 @@ Rails.application.routes.draw do
    post "login", to: "sessions#create"
    delete "logout", to: "sessions#destroy"
 
-  #  Posts
+    #  Posts
     resources :posts
 
+     # Sector & Types
     scope :admin do
       resources :sectors
       resources :types
     end
+
+    # Jobs
+    resources :jobs
+
 end

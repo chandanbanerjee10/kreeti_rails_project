@@ -8,7 +8,7 @@
             <% end %>
         </ul>
     <%end%>
-    <%= form_with(model: @sector, url: sectors_path) do |f|%>
+    <%= form_with(model: @sector) do |f|%>
         <div>
             <%= f.label :name %>
             <%= f.text_field :name %> 
