@@ -1,0 +1,9 @@
+<div class="container mt-4">
+    <h1>List all types</h1>
+
+    <%@types.each do |s|%>
+        <li><%= link_to s.name, type_path(s) %></li>
+    <%end%>
+
+    <%= link_to "Create a new Type", new_type_path %>
+</div>

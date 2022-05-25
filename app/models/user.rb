@@ -15,8 +15,9 @@ class User < ApplicationRecord
     # Posts
     has_many :posts, dependent: :destroy
 
-    # Sectors
+    # Sectors & Types
     has_many :sectors, dependent: :destroy
+    has_many :types, dependent: :destroy
 
     
 end

@@ -1,17 +1,17 @@
-class  SectorsController < ApplicationController
+class  TypesController < ApplicationController
     before_action :require_user , only: [:index, :show] 
     before_action :require_admin, except: [:index, :show]
 
     def new
-        @sector = Sector.new
+        @type = Type.new
     end
 
     def create
-        @sector= Sector.new(sector_params)
-        @sector.user = current_user
-        if @sector.save
+        @type= Type.new(type_params)
+        @type.user = current_user
+        if @type.save
           flash[:success] = "Sector successfully created"
-          redirect_to sectors_path
+          redirect_to types_path
         else
           flash[:error] = "Something went wrong"
           render 'new' , status: :unprocessable_entity
@@ -20,36 +20,36 @@ class  SectorsController < ApplicationController
     
     def show
         # debugger
-        @sector = Sector.find(params[:id])
+        @type = Type.find(params[:id])
     end
 
     def index
-        @sectors = Sector.all
+        @types = Type.all
     end
 
     def destroy
-        @sector = Sector.find(params[:id])
-        @sector.destroy
+        @type = Type.find(params[:id])
+        @type.destroy
         flash[:danger] = "Sector successfully deleted"
-        redirect_to sectors_path, status: :see_other
+        redirect_to types_path, status: :see_other
     end
 
     def edit
-        @sector = Sector.find(params[:id])
+        @type = Type.find(params[:id])
     end
 
     def update
-        @sector = Sector.find(params[:id])
-        if @sector.update(sector_params)
+        @type = Type.find(params[:id])
+        if @type.update(sector_params)
             flash[:success] = "Sector successfully updated"
-            redirect_to sectors_path
+            redirect_to types_path
         else
             flash[:error] = "Something went wrong"
             render 'edit' , status: :unprocessable_entity
         end
     end
     private
-    def sector_params
-        params.require(:sector).permit(:name)
+    def type_params
+        params.require(:type).permit(:name)
     end
 end

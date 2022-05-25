@@ -16,5 +16,6 @@ Rails.application.routes.draw do
 
     scope :admin do
       resources :sectors
+      resources :types
     end
 end

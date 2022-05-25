@@ -1,0 +1,18 @@
+<h1>Edit Type</h1>
+<%if @type.errors.any?%>
+ <h4 class="alert-heading">The following errors prevented the type from being saved</h4>
+    <ul>
+        <% @type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+<%end%>
+<%= form_with(model: @type) do |f|%>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %> 
+    </div>
+    <br>
+        <%=f.submit "Submit"%>
+<%end%>
+<%= link_to "Types List", types_path %>

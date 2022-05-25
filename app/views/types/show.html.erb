@@ -1,0 +1,10 @@
+<h1>Type Show</h1>
+
+<ul>
+    <li><%=@type.name%></li>
+</ul>
+<%= link_to "Edit Type", edit_type_path%>
+<%=link_to "Delete Type", type_path, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }%>
