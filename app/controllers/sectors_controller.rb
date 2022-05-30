@@ -1,6 +1,6 @@
 class  SectorsController < ApplicationController
-    before_action :require_user , only: [:index, :show] 
-    before_action :require_admin, except: [:index, :show]
+    before_action :require_user 
+    before_action :require_admin_recruiter, except: [:index, :show]
 
     def new
         @sector = Sector.new

@@ -21,6 +21,13 @@ class ApplicationController < ActionController::Base
             redirect_to login_path
         end
     end
+
+    def require_admin_recruiter
+        if current_user.role == "candidate"
+            flash[:alert] = "You must be a recruiter or an admin to perform that action"
+            redirect_to login_path
+        end
+    end
  
 
 end

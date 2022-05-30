@@ -6,9 +6,9 @@
             <% @job.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
             <% end %>
-        </ul>
+        </ul> 
     <%end%>
-    <%= form_with(model: @job, url: jobs_path) do |f|%>
+    <%= form_with(model: @job) do |f|%>
         <div>
             <%= f.label :title %>
             <%= f.text_field :title %> 
@@ -33,12 +33,16 @@
             <%= f.label :sector%>
             <%= f.collection_select(:sector_id, Sector.all, :id, :name,
                 { prompt: "Select a Job Sector"}) %>
+            <span> Or </span>
+            <%=link_to "Create a New Sector", new_sector_path%>
         </div>
         <br>
         <div>
             <%= f.label :type%>
             <%= f.collection_select(:type_id, Type.all, :id, :name,
                 { prompt: "Select a Job Type"}) %>
+            <span> Or </span>
+            <%=link_to "Create a New Type", new_type_path%>
         </div>
         <br>
         <%=f.submit "Submit"%>

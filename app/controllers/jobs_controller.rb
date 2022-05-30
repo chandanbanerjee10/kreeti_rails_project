@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
+    before_action :require_user , except: [:index, :show] 
     before_action :require_recruiter , except: [:index, :show] 
+
     def index
         @jobs = Job.all
     end
@@ -16,7 +18,7 @@ class JobsController < ApplicationController
         @job = Job.new(job_params)
         @job.user = current_user
         if @job.save
-          flash[:success] = "Jobsuccessfully created"
+          flash[:success] = "Job successfully created"
           redirect_to jobs_path
         else
           flash[:error] = "Something went wrong"
