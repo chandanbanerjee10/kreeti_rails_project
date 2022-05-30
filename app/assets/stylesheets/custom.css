@@ -4,3 +4,11 @@
     color: green !important;
 }
 
+a{ 
+    text-decoration: none !important;
+}
+
+/* Chatbox */
+.chatbox{
+    height: 450px !important;
+}
