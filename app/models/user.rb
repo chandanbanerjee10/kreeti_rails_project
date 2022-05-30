@@ -21,4 +21,7 @@ class User < ApplicationRecord
 
     #Jobs
     has_many :jobs, dependent: :destroy
+
+    # Messages
+    has_many :messages
 end

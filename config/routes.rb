@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :jobs
 
     # Chatroom
-    get "chatroom", to: "chatroom#index"
+    get "chatroom", to: "chatroom#index"  
+    post 'message', to: 'messages#create'
+    mount ActionCable.server, at: '/cable'
 
 end

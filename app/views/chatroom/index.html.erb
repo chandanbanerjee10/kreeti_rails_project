@@ -7,17 +7,17 @@
     <div class="row">
         <div class="card col-8 chatbox position-relative">
             <div class="container mt-4">  
-                <div><a href = "#"> Chandan</a> added <a href = "#"> Madhusree</a> </div>
-                <div><a href = "#"> Chandan</a> added <a href = "#"> Madhusree</a> </div>
-                <p><a href = "#"> Chandan</a>: Text Message </p>
+                <%@messages.each do |m|%>
+                    <p><%= link_to m.user.username, user_path(m.user)%>: <%= m.body%> </p>
+                <%end%>
             </div>
-            <div class="container position-absolute bottom-0 start-0">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Write Message" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Send</button>
-                    </div>
-                </div>
+            <div class="container position-absolute bottom-0 start-0">  
+                <%= form_for(@message, html: {class: "input-group mb-3"}, url: message_path) do |f|%>
+                        <%= f.text_field :body, placeholder: "Write a message", class: "form-control"%>
+                        <div class="input-group-append">
+                            <%= f.button "Send", class: "btn btn-outline-secondary"%>
+                        </div>
+                <%end%>
             </div>   
         </div>
         <div class="col-4 ">
