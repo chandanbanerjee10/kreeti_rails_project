@@ -6,13 +6,11 @@
 
     <div class="row">
         <div class="card col-8 chatbox position-relative">
-            <div class="container mt-4">  
-                <%@messages.each do |m|%>
-                    <p><%= link_to m.user.username, user_path(m.user)%>: <%= m.body%> </p>
-                <%end%>
+            <div class="container mt-4" id = "message-container">  
+                <%= render @messages%>
             </div>
             <div class="container position-absolute bottom-0 start-0">  
-                <%= form_for(@message, html: {class: "input-group mb-3"}, url: message_path) do |f|%>
+                <%= form_for(@message, html: {class: "input-group mb-3"}, url: message_path, method: "POST", remote: true) do |f|%>
                         <%= f.text_field :body, placeholder: "Write a message", class: "form-control"%>
                         <div class="input-group-append">
                             <%= f.button "Send", class: "btn btn-outline-secondary"%>
