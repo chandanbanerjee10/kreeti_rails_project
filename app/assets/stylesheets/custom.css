@@ -10,6 +10,11 @@ a{
 }
 
 /* Chatbox */
-.chatbox{
-    height: 450px !important;
+#message-container{
+    overflow: auto !important;
+    height: 370px !important;
+}
+
+#message-submit{
+   
 }
