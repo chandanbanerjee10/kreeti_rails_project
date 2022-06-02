@@ -1,0 +1,11 @@
+<h1>All job requests are listed</h1>
+
+<div class="container mt-4">
+    <h1>List all jobs</h1>
+
+    <%@jobs.each do |j|%>
+        <li><%= link_to j.title, admin_job_show_path(j) %></li>
+    <%end%>
+
+    <%= link_to "Create a new Job", new_job_path %>
+</div>

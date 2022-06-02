@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
   #  Admin
-  get 'admin', to: 'admin#home'
+  get 'admin', to: 'admin#home'   
+  get 'admin/job_requests', to: 'admin#job_requests'
+  get 'admin/job_show/:id', to: 'admin#job_show', as: 'admin_job_show'
+  post 'admin/job_approve/:id', to: 'admin#job_approve', as: 'admin_job_approve'
+
 
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"

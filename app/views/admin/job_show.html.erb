@@ -1,0 +1,13 @@
+<h1>Job Show For Admin</h1>
+
+<ul>
+    <li><%=@job.title%></li>
+    <li><%=@job.job_description%></li>
+    <li><%=@job.job_location%></li>
+    <li><%=@job.keyskills%></li>
+    <li><%=@job.sector.name%></li>
+    <li><%=@job.type.name%></li>
+    <li><%=@job.user.username%></li>
+</ul>
+
+    <%= button_to "Accept", controller: :admin, action: :job_approve%>

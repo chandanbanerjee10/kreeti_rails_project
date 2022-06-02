@@ -24,4 +24,16 @@ class User < ApplicationRecord
 
     # Messages
     has_many :messages
+
+    def is_admin?
+        role == "admin"
+    end
+
+    def is_recruiter?
+        role == "recruiter"
+    end
+
+    def is_candidate?
+        role == "candidate"
+    end
 end
