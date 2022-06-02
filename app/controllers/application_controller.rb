@@ -9,14 +9,22 @@ class ApplicationController < ActionController::Base
     end
 
     def require_admin
-        if current_user.role != "admin"
-            flash[:alert] = "You must be an admin to perform that action"
+        if !logged_in? 
+            flash[:alert] = "You must be logged in to perform that action"
+            redirect_to login_path
+        elsif current_user.role != "admin"
+            session[:user_id] = nil
+            flash[:alert] = "You must be a admin to perform that action"
             redirect_to login_path
         end
     end
 
     def require_recruiter
-        if current_user.role != "recruiter"
+        if !logged_in? 
+            flash[:alert] = "You must be logged in to perform that action"
+            redirect_to login_path
+        elsif current_user.role != "recruiter"
+            session[:user_id] = nil
             flash[:alert] = "You must be a recruiter to perform that action"
             redirect_to login_path
         end

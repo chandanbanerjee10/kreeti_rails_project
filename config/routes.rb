@@ -2,30 +2,34 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-   root "pages#home"
-   get "about", to: "pages#about"
-   get 'signup', to: 'users#new'
-   resources :users, except: [:new]
+  root "pages#home"
+  get "about", to: "pages#about"
 
-   get "login", to: "sessions#new"
-   post "login", to: "sessions#create"
-   delete "logout", to: "sessions#destroy"
+  #  Users
+  get 'signup', to: 'users#new'
+  resources :users, except: [:new]
+  #  Admin
+  get 'admin', to: 'admin#home'
 
-    #  Posts
-    resources :posts
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
 
-     # Sector & Types
-    scope :admin do
-      resources :sectors
-      resources :types
-    end
+  #  Posts
+  resources :posts
 
-    # Jobs
-    resources :jobs
+  # Sector & Types
+  scope :admin do
+    resources :sectors
+    resources :types
+  end
 
-    # Chatroom
-    get "chatroom", to: "chatroom#index"  
-    post 'message', to: 'messages#create'
-    mount ActionCable.server, at: '/cable'
+  # Jobs
+  resources :jobs
+
+  # Chatroom
+  get "chatroom", to: "chatroom#index"  
+  post 'message', to: 'messages#create'
+  mount ActionCable.server, at: '/cable'
 
 end

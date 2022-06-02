@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-    before_action :require_user , except: [:index, :show] 
+    before_action :require_user , only: [:index, :show] 
     before_action :require_recruiter , except: [:index, :show] 
 
     def index

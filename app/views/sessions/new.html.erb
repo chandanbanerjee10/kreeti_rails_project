@@ -1,22 +1,23 @@
+  <h1>Welcome to Login Page</h1>
   <div class="container">
     <div class = "row justify-content-center">
-        <div class="col-8">
+        <div class="col-4 mt-4">
             <%= form_with(scope: :session, url: login_path) do |f| %>
-                <div>
+                <div class="form-outline mb-4">
                     <%= f.label :email %>
-                    <%= f.email_field :email, rows:10, placeholder:"Enter your email"%>
-                </div>
-                <br>
-                <div>
-                    <%= f.label :password %>    
-                    <%= f.password_field :password, rows:10, placeholder:"Enter your password"%>
+                    <%= f.email_field :email, rows:10, class:"form-control",placeholder:"Enter your email"%>
+                </div>  
+                <div class="form-outline mb-4">
+                    <%= f.label :password %>
+                    <%= f.password_field :password , class:"form-control", rows:10, placeholder:"Enter your password"%>
                 </div>
 
                 <div style="margin-top: 15px;">
-                    <%= f.submit "Log In"%>
+                    <%= f.submit "Log In", class: "btn btn-primary btn-block mb-4"%>
                 </div>
 
             <% end %>
         </div>  
     </div>
 </div>
+

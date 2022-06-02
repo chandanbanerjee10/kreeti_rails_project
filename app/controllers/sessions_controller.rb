@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:session][:password])
             session[:user_id] = @user.id
             flash[:notice] = "logged in successfully"
+            if @user.role == "admin"
+                redirect_to admin_path
+            else
             redirect_to @user
+            end
         else
             flash.now[:danger] = "There is something wrong with your login information"
             render 'new', status: :unprocessable_entity
