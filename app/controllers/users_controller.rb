@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show, :destroy]
-    before_action :require_user, except: [:index, :show]
+    before_action :require_user, only: [:edit, :update]
     # before_action :require_same_user, only: [:edit, :update, :destroy]
 
     def new
@@ -18,15 +18,19 @@ class UsersController < ApplicationController
         # debugger
         user = User.new(user_params)
         if user.save && user.role == "candidate"
+            session[:user_id] = user.id
             flash[:notice] = "candidate was created successfully."
             redirect_to user
         elsif user.save && user.role == "recruiter"
+            session[:user_id] = user.id
             flash[:notice] = "recruiter was created successfully."
-            redirect_to root_path
+            redirect_to user
 
         elsif user.save && user.role == "admin"
+            session[:user_id] = user.id
             flash[:notice] = "admin was created successfully."
-            redirect_to about_path
+            redirect_to admin_path
+            
         else
             render 'new', status: :unprocessable_entity
         end
@@ -48,6 +52,7 @@ class UsersController < ApplicationController
 
     def destroy
         @user.destroy
+        session[:user_id] = nil
         flash[:danger] = "Account successfully deleted"
         redirect_to users_path, status: :see_other
     end
