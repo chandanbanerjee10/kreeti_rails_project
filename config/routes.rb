@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'admin/job_requests', to: 'admin#job_requests'
   get 'admin/job_show/:id', to: 'admin#job_show', as: 'admin_job_show'
   post 'admin/job_approve/:id', to: 'admin#job_approve', as: 'admin_job_approve'
+  post 'admin/job_reject/:id', to: 'admin#job_reject', as: 'admin_job_reject'
 
 
   get "login", to: "sessions#new"

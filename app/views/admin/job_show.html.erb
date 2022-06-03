@@ -10,4 +10,5 @@
     <li><%=@job.user.username%></li>
 </ul>
 
-    <%= button_to "Accept", controller: :admin, action: :job_approve%>
+    <span><%= button_to "Accept", controller: :admin, action: :job_approve %></span><br>
+    <span><%= button_to "Reject", controller: :admin, action: :job_reject %></span>
