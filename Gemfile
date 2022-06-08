@@ -72,3 +72,4 @@ group :test do
   gem "webdrivers"
 end
 gem 'sass-rails'
+gem 'jquery-rails'
