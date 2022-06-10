@@ -13,10 +13,10 @@
                 </div>
             </div>    
             <div class="container" id = "message-submit">  
-                <%= form_for(@message, html: {class: "input-group mb-3"}, url: message_path, method: "POST", remote: true) do |f|%>
+                <%= form_for(@message, html: {class: "input-group mb-3"}, url: message_path, method: :post, remote: true, data: {turbo_frame: "messages"}) do |f|%>
                         <%= f.text_field :body, placeholder: "Write a message", class: "form-control"%>
                         <div class="input-group-append">
-                            <%= f.button "Send", class: "btn btn-outline-secondary"%>
+                            <%= f.button "Send", class: "btn btn-outline-secondary", id: "demo"%>
                         </div>
                 <%end%>
             </div>   
@@ -41,3 +41,14 @@
         </div>
   </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function scroll_bottom(){
+        var m = document.getElementById('message-container');
+        m.scrollTop = m.scrollHeight;    
+    }  
+    $(document).on('turbolinks:load', function(){
+        scroll_bottom();
+    })
+        
+</script>

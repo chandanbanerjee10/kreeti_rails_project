@@ -47,10 +47,14 @@
         </li>
         <%end%>
       </ul>
-      <form class="d-flex" role="search">
+      <%# <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> %>
+      <%= form_with(url: jobs_path, method: :get, data: {turbo_frame: "jobs"}, class:"d-flex") do |f|%>
+        <%= f.text_field :query, class: "form-control me-2", placeholder: "Search"%>
+        <%= f.submit "Search", class: "btn btn-outline-success"%>
+      <%end%>
     </div>
   </div>
 </nav>

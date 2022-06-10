@@ -3,7 +3,11 @@ class JobsController < ApplicationController
     before_action :require_recruiter , except: [:index, :show] 
 
     def index
-        @jobs = Job.all
+        if params[:query].present?
+            @jobs = Job.where("title LIKE ? OR job_location LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+        else
+            @jobs = Job.all
+        end
     end
 
     def show
