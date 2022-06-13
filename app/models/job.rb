@@ -2,6 +2,7 @@ class Job < ApplicationRecord
     belongs_to :user
     belongs_to :type
     belongs_to :sector
+    has_many :reviews
 
     # Validations
     validates :title, presence: true, length: { minimum: 1, maximum: 25 }

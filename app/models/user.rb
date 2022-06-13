@@ -24,6 +24,8 @@ class User < ApplicationRecord
 
     # Messages
     has_many :messages
+    # Reviews
+    has_many :reviews
 
     def is_admin?
         role == "admin"

@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   end
 
   # Jobs
-  resources :jobs
+  resources :jobs do
+    resources :reviews
+  end
 
   # Chatroom
   get "chatroom", to: "chatroom#index"  
