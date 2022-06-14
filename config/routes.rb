@@ -38,5 +38,5 @@ Rails.application.routes.draw do
   mount ActionCable.server, at: '/cable'
 
 
-  # get '/auth/:provider/callback', to: 'sessions#omniauth'
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
 end
