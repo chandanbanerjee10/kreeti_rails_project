@@ -273,13 +273,10 @@ DEPENDENCIES
   hirb
   importmap-rails
   jbuilder
-<<<<<<< HEAD
   jquery-rails
-=======
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
->>>>>>> google
   puma (~> 5.0)
   rails (~> 7.0.3)
   sass-rails
