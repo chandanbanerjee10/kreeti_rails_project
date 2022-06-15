@@ -29,6 +29,21 @@ class SessionsController < ApplicationController
         redirect_to users_path, status: :see_other
     end
 
+    def omniauth
+        user = User.find_or_create_by(uid: request.env['omniauth.auth'][:uid], provider: request.env['omniauth.auth'][:provider]) do |u|
+            u.username = request.env['omniauth.auth'][:info][:first_name]
+            u.email = request.env['omniauth.auth'][:info][:email]
+            u.password = SecureRandom.hex(15)
+        end
+        if user.valid?
+            session[:user_id] = user.id
+            redirect_to user_path(user)
+        else
+            flash[:notice] = "There is something wrong with your login info"
+            redirect_to login_path
+        end
+    end
+
     private
 
     def logged_in_redirect
