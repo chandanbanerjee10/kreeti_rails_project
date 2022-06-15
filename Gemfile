@@ -72,12 +72,9 @@ group :test do
   gem "webdrivers"
 end
 gem 'sass-rails'
-<<<<<<< HEAD
 gem 'jquery-rails'
-=======
 
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
->>>>>>> google
