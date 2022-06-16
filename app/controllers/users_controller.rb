@@ -8,14 +8,13 @@ class UsersController < ApplicationController
     end
 
     def show
-        
+
     end
     
     def edit
     end
 
     def create
-        # debugger
         user = User.new(user_params)
         if user.save && user.role == "candidate"
             session[:user_id] = user.id
@@ -56,7 +55,6 @@ class UsersController < ApplicationController
         flash[:danger] = "Account successfully deleted"
         redirect_to users_path, status: :see_other
     end
-
     private
         def user_params
             params.require(:user).permit(:username,:email,:password,:role)
