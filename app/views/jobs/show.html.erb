@@ -16,3 +16,18 @@
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   }%>
+<%= render 'posts/post_form' %>
+<% if @job.posts%>
+  <%@job.posts.each do |post|%>
+  <ul>
+    <li><%=post.name%></li>
+    <li><%=post.post_description%></li>
+    <li><%=post.username%></li>
+    <li><%=post.phone_number%></li>
+    <li><%=post.city%></li>
+    <% if post.file.attached?%>
+    <li><%=link_to post.file.filename, url_for(post.file)%></li>
+    <%end%>
+  </ul>
+  <%end%>
+<%end%>

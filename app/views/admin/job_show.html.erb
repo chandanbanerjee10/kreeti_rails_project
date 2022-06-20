@@ -1,3 +1,4 @@
+
 <h1>Job Show For Admin</h1>
 
 <ul>
@@ -10,5 +11,6 @@
     <li><%=@job.user.username%></li>
 </ul>
 
-    <span><%= button_to "Accept", controller: :admin, action: :job_approve %></span><br>
-    <span><%= button_to "Reject", controller: :admin, action: :job_reject %></span>
+    <span><%= button_to "Accept", admin_job_approve_path, class: "btn btn-success"%></span><br>
+    <span><%= button_to "Reject", admin_job_reject_path, class:"btn btn-danger" %></span>
+    

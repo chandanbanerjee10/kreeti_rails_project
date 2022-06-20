@@ -7,8 +7,11 @@ class PostsController < ApplicationController
     end
 
     def create
+        debugger
         @post = Post.new(post_params)
+        @post.job = Job.find(params[:id])
         @post.user = current_user
+        
         if @post.save
           flash[:success] = "Job Post successfully created"
           redirect_to @post
@@ -27,6 +30,6 @@ class PostsController < ApplicationController
     end
     private
     def post_params
-        params.require(:post).permit(:name, :post_description, :username, :phone_number, :city, :file)
+        params.require(:post).permit(:name, :post_description, :username, :phone_number, :city, :file,:job_id)
     end
 end

@@ -22,21 +22,18 @@
 <%=link_to "List all Jobs", jobs_path%>
 
 <% if @user.role == nil%>
-<h1>Select a Role</h1>
-  <%= form_with(model: @user,class: "shadow p-3 mb-5 bg-info rounded") do |f| %>
-    <div class = "form-group row mt-4">
-      <%= f.label :role, class: "col-2 col-form-label text-white" %><br/>
-      <div class="col-10">
-        <%= f.select :role, User.roles.keys %>
+  <h1>Select a Role</h1>
+    <%= form_with(model: @user,class: "shadow p-3 mb-5 bg-info rounded") do |f| %>
+      <div class = "form-group row mt-4">
+        <%= f.label :role, class: "col-2 col-form-label text-white" %><br/>
+        <div class="col-10">
+          <%= f.select :role, User.roles.keys %>
+        </div>
       </div>
-    </div>
-
-    <div style = "margin-top:15px;">
-      <%= f.submit "Choose a Role"%>
-    </div>
-  <%end%>
-
-</div>
-
+      <div style = "margin-top:15px;">
+        <%= f.submit "Choose a Role"%>
+      </div>
+    <%end%>
 <%end%>
+
 
