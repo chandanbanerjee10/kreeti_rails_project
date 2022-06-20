@@ -1,17 +1,19 @@
 <div class="container">
-    <h1>Listing Posts</h1>
+    <h1>Listing Posts for this Job</h1>
 
 
     <% @posts.each do |post|%>
-        <h4>Created By <%= link_to post.user.username, user_path(post.user)%></h4>
-        <li><%=link_to post.name, post_path(post)%></li>
-        <li><%=post.post_description%></li>
-        <li><%=post.username%></li>
-        <li><%=post.phone_number%></li>
-        <li><%=post.city%></li>
-        <%if post.file.attached?%>
-        <li><%=link_to post.file.filename, url_for(post.file)%></li>
+        <%if post.job == @job%>
+            <h4>Created By <%= link_to post.user.username, user_path(post.user)%></h4>
+            <li><%=link_to post.name, job_post_path(post.job, post)%></li>
+            <li><%=post.post_description%></li>
+            <li><%=post.username%></li>
+            <li><%=post.phone_number%></li>
+            <li><%=post.city%></li>
+            <%if post.file.attached?%>
+            <li><%=link_to post.file.filename, url_for(post.file)%></li>
+            <%end%>
+            <br>
         <%end%>
-        <br>
     <%end%>
 </div>

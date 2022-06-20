@@ -7,14 +7,13 @@ class PostsController < ApplicationController
     end
 
     def create
-        debugger
-        @post = Post.new(post_params)
-        @post.job = Job.find(params[:id])
-        @post.user = current_user
-        
+        @post = Post.create(post_params)   
+        @job = Job.find(params[:job_id])
+        @post.job = @job
+        @post.user = current_user 
         if @post.save
           flash[:success] = "Job Post successfully created"
-          redirect_to @post
+          redirect_to @job
         else
           flash[:error] = "Something went wrong"
           render 'new' , status: :unprocessable_entity
@@ -26,7 +25,8 @@ class PostsController < ApplicationController
     end
 
     def index
-        @posts = Post.all
+        @posts = Post.all    
+        @job = Job.find(params[:job_id])
     end
     private
     def post_params
