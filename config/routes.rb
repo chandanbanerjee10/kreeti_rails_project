@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
 
   # Posts
-  resources :posts
+  
 
 
   # Sector & Types
@@ -31,7 +31,10 @@ Rails.application.routes.draw do
   end
 
   # Jobs
-  resources :jobs
+  resources :jobs do
+    resources :reviews
+    resources :posts
+  end
 
   # Chatroom
   get "chatroom", to: "chatroom#index"  
