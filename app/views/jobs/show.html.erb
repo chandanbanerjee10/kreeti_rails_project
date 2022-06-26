@@ -2,14 +2,19 @@
 
 <ul>
     <li><%=@job.title%></li>
+    <%if @job.organisation_name?%>
+     <li><%=@job.organisation_name%></li>
+    <%end%>
     <li><%=@job.job_description%></li>
     <li><%=@job.job_location%></li>
     <li><%=@job.keyskills%></li>
     <li><%=@job.sector.name%></li>
     <li><%=@job.type.name%></li>
-    <li><%=@job.user.username%></li>
+    <li><%=@job.user.username%></li>   
 </ul>
-<%=link_to "List all Posts", job_posts_path(@job)%>
+<%if current_user.is_recruiter?%>
+  <%=link_to "List all Posts", job_posts_path(@job)%>
+<%end%>
 <%=link_to "Create a new Job", new_job_path%>
 <%=link_to "Edit Job", edit_job_path%>
 <%=link_to "Delete Job", job_path, data: {

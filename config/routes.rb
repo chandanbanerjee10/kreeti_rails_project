@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   #  Users
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
+  post 'users/respond_to_candidate/:id', to: 'users#respond_to_candidate', as: 'respond_to_candidate'
   #  Admin
   get 'admin', to: 'admin#home'   
   get 'admin/job_requests', to: 'admin#job_requests'

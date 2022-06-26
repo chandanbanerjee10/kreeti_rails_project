@@ -55,6 +55,12 @@ class UsersController < ApplicationController
         flash[:danger] = "Account successfully deleted"
         redirect_to users_path, status: :see_other
     end
+
+    def respond_to_candidate
+        @post = Post.find(params[:id])
+        @post.is_approved = true    
+        RespondMailer.respond_to_candidate(@post).deliver_later
+    end
     private
         def user_params
             params.require(:user).permit(:username,:email,:password,:role)

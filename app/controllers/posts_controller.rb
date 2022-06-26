@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
-    before_action :require_user , only: [:new, :create, :index] 
-
-
+    before_action :require_user , only: [:new, :create] 
+    before_action :require_recruiter, only:[:index, :destroy]
     def new
         @post = Post.new
     end
@@ -27,6 +26,14 @@ class PostsController < ApplicationController
     def index
         @posts = Post.all    
         @job = Job.find(params[:job_id])
+    end
+
+    def destroy
+        @post = Post.find(params[:id])
+        if @post.destroy
+            flash[:danger] = "Job post successfully deleted"
+            redirect_to job_path(@post.job), status: :see_other
+        end
     end
     private
     def post_params

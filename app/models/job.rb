@@ -2,7 +2,7 @@ class Job < ApplicationRecord
     belongs_to :user
     belongs_to :type
     belongs_to :sector
-    has_many :posts
+    has_many :posts, dependent: :destroy
     has_many :reviews
 
     # Validations

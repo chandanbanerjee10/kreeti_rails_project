@@ -10,5 +10,9 @@
     <li><%=link_to @post.file.filename, url_for(@post.file)%></li>
     <%end%>
 </ul>
-
+<%= button_to "Respond", respond_to_candidate_path%>
+<%= link_to "Reject Job Post", job_post_path(@post), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure you want to delete this post?"
+                  }%>
 

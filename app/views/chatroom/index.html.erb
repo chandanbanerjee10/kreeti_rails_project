@@ -43,12 +43,13 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+    console.log("yes")
     function scroll_bottom(){
         var m = document.getElementById('message-container');
         m.scrollTop = m.scrollHeight;    
+        debugger;
     }  
     $(document).on('turbolinks:load', function(){
         scroll_bottom();
     })
-        
 </script>
