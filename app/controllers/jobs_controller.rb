@@ -6,7 +6,7 @@ class JobsController < ApplicationController
         if params[:query].present?
             @jobs = Job.where("title LIKE ? OR job_location LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
         else
-            @jobs = Job.all
+            @jobs = Job.page params[:page]
         end
     end
 
