@@ -1,47 +1,12 @@
-<h1>Job Show</h1>
+<h1 class = "text-center">Job Show</h1>
 
-<ul>
-    <li><%=@job.title%></li>
-    <%if @job.organisation_name?%>
-     <li><%=@job.organisation_name%></li>
-    <%end%>
-    <li><%=@job.job_description%></li>
-    <li><%=@job.job_location%></li>
-    <li><%=@job.keyskills%></li>
-    <li><%=@job.sector.name%></li>
-    <li><%=@job.type.name%></li>
-    <li><%=@job.user.username%></li>   
-</ul>
-<%if current_user.is_recruiter?%>
-  <%=link_to "List all Posts", job_posts_path(@job)%>
-<%end%>
-<%=link_to "Create a new Job", new_job_path%>
-<%=link_to "Edit Job", edit_job_path%>
-<%=link_to "Delete Job", job_path, data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  }%>
-<%if current_user.is_candidate?%>
-  <%= render 'posts/post_form' %>
-<%end%>
+<%= render 'job'%>
 
-  <h2>Reviews</h2>
-  <% @job.reviews.each do |review| %>
-    <p>
-      <strong>Review:</strong>
-      <%if review.user%>
-      <%= review.content %> <span> by </span> <%= link_to review.user.username , user_path(review.user)%>
-      <%end%>
-    </p>
-  <% end %>
-  <h2>Add a review:</h2>
-  <%= form_with model: [ @job, @job.reviews.build ] do |form| %>
-    <p>
-      <%= form.label :content %><br>
-      <%= form.text_area :content %>
-    </p>
-    <p>
-      <%= form.submit %>
-    </p>
-  <% end %>
-
+<div class="row mb-4">
+  <div class="col">
+    <%= render 'posts/post_form' %>
+  </div>
+  <div class="col">
+    <%= render 'reviews/review'%>
+  </div>
+</div>

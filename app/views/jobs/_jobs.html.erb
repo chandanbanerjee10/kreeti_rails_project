@@ -9,7 +9,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title text-success text-left text-decoration-none"><%= link_to job.title, job_path(job)%></h5>
-                <p class="card-text"><%= simple_format(job.job_description) %></p>
+                <p class="card-text"><%= truncate(job.job_description, length: 100) %></p>
                 <p > <span>Location:</span> <%= job.job_location%></p>
                 <p> <span> Skills Required:</span> <%=job.keyskills%></p>
                 <%= link_to "View", job_path(job), class: "btn btn-outline-primary"%> 

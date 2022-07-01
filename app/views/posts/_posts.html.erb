@@ -1,0 +1,28 @@
+<div class="container post-container">
+  <% @posts.each do |post| %>
+    <%if post.job == @job%>
+      <div class="row justify-content-md-center">
+          <div class="col-6 mt-6">
+            <div class="card shadow mb-5 bg-white rounded post-card">
+              <div class="card-header text-center font-weight-bold " id = "post-head">    
+                 Posted By <%= link_to post.user.username, user_path(post.user)%>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-success text-left text-decoration-none"> <%= post.name%></h5>
+                <p class="card-text"><%= truncate(post.post_description, length: 100) %></p>
+                <p > <span>Phone Number:</span> <%= post.phone_number%></p>
+                <p> <span> City:</span> <%=post.city%></p>
+                <%= link_to "View", job_post_path(post.job,post), class: "btn btn-outline-primary"%> 
+                <% if %>
+                  
+                <%end%>
+              </div>
+              <div class="card-footer text-muted">
+                <small> Created <%= time_ago_in_words(post.created_at)%> ago, Edited <%= time_ago_in_words(post.updated_at)%> ago</small>
+              </div>
+            </div>
+          </div>
+      </div>
+    <%end%>
+  <%end%>
+</div>

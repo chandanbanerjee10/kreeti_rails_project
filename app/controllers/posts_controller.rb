@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :require_user , only: [:new, :create] 
+    before_action :require_candidate , only: [:new, :create] 
     before_action :require_recruiter, only:[:index, :destroy]
     def new
         @post = Post.new
