@@ -1,13 +1,6 @@
 <h1>Hi</h1>
 
-<%if @user.errors.any?%>
- <h4 class="alert-heading">The following errors prevented the user from being saved</h4>
-    <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-    </ul>
-<%end%>
+  <%= render 'shared/errors', obj: @user %>
   <%= form_with(model: @user,class: "shadow p-3 mb-5 bg-info rounded") do |f| %>
         <div class = "form-group row">
             <%= f.label :username, class: "col-2 col-form-label text-light "%><br/>

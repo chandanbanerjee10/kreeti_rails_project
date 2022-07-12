@@ -1,23 +1,44 @@
-<h1>Hi</h1>
+<h1>Profile</h1>
+<div class="col-md-8 mt-4">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Name:</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+         <h6><%= @user.username %></h6>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Email:</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <h6><%=@user.email%></h6>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <h6 class="mb-0">Role:</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <h6><%= @user.role%></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<ul>
-    <li><%=@user.username%></li>
-    <li><%=@user.email%></li>
-    <li><%=@user.role%></li>
-</ul>
+<%= link_to ' <i class="fa fa-gear"></i> Edit Profile '.html_safe, edit_user_path, class: "btn btn-secondary btn-lg mx-2" %>
 
-<%= link_to "Edit", edit_user_path%>
-<%= link_to "Delete User", user_path, data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  }%>
-<%=link_to "Users List", users_path%>
-<%=link_to "Create a new Job", new_job_path%>
-<br>
-<%=link_to "List all Sectors", sectors_path%>
-<%=link_to "List all Types", types_path%>
+<%= link_to ' <i class="far fa-comments"></i> Chat Here '.html_safe, chatroom_path, class: "btn btn-primary btn-lg mx-2" %>
 
-<%=link_to "List all Jobs", jobs_path%>
+<%= link_to ' <i class="fas fa-briefcase"></i> Find Jobs '.html_safe, jobs_path, class: "btn btn-info btn-lg mx-2" %>
+
+<%= link_to ' <i class="fas fa-user-friends"></i> See Users '.html_safe, users_path, class: "btn btn-success btn-lg mx-2" %>
 
 <% if @user.role == nil%>
   <h1>Select a Role</h1>

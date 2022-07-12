@@ -10,11 +10,13 @@
   <h2>Add a review:</h2>
   <%= form_with model: [ @job, @job.reviews.build ] do |form| %>
     <p>
-      <%= form.label :content %><br>
-      <%= form.text_area :content %>
+      <%= form.label :content %>
+      <div class="form-group col-md-8">  
+        <%= form.text_area :content, class: "form-control" %>
+      </div>
     </p>
     <p>
-      <%= form.submit %>
+      <%= form.submit class:"btn btn-success"%>
     </p>
   <% end %>
 

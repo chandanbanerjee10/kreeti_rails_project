@@ -1,20 +1,35 @@
 <div class="container">
-    <h1>Listing Posts for this Job</h1>
-
-
-    <% @posts.each do |post|%>
-        <%if post.job == @job%>
-            <h4>Created By <%= link_to post.user.username, user_path(post.user)%></h4>
-            <li><%=link_to post.name, job_post_path(post.job, post)%></li>
-            <li><%=post.post_description%></li>
-            <li><%=post.username%></li>
-            <li><%=post.phone_number%></li>
-            <li><%=post.city%></li>
-            <%if post.file.attached?%>
-            <li><%=link_to post.file.filename, url_for(post.file)%></li>
-            <%end%>
-            <br>
+    <h1>Post Requests for this Job</h1>
+     <%res = @posts.select {|post| !post.is_approved?}%>
+     <%if res.length == 0 %>
+        <h3 class = "text-success">No Post request is pending</h3>
+     <%end%>
+     <% @posts.each do |post| %>
+        <%if post.job == @job && !post.is_approved?%>
+        <div class="row justify-content-md-center">
+            <div class="col-6 mt-6">
+                <div class="card shadow mb-5 bg-white rounded post-card">
+                <div class="card-header text-center font-weight-bold " id = "post-head">    
+                    Posted By <%= link_to post.user.username, user_path(post.user)%>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-success text-left text-decoration-none"> <%= post.name%></h5>
+                    <p class="card-text"><%= truncate(post.post_description, length: 100) %></p>
+                    <p > <span>Phone Number:</span> <%= post.phone_number%></p>
+                    <p> <span> City:</span> <%=post.city%></p>
+                    <%= link_to "View", job_post_path(post.job,post), class: "btn btn-outline-primary"%> 
+                    <% if %>
+                    
+                    <%end%>
+                </div>
+                <div class="card-footer text-muted">
+                    <small> Created <%= time_ago_in_words(post.created_at)%> ago, Edited <%= time_ago_in_words(post.updated_at)%> ago</small>
+                </div>
+                </div>
+            </div>
+        </div>
         <%end%>
     <%end%>
+    <h1>List of Qualified Candidates for this Job</h1>
     <%= render 'posts'%>
 </div>

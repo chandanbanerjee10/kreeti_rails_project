@@ -15,18 +15,18 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.new(user_params)
-        if user.save && user.role == "candidate"
-            session[:user_id] = user.id
+        @user = User.new(user_params)
+        if @user.save && @user.role == "candidate"
+            session[:user_id] = @user.id
             flash[:notice] = "candidate was created successfully."
-            redirect_to user
-        elsif user.save && user.role == "recruiter"
-            session[:user_id] = user.id
+            redirect_to @user
+        elsif @user.save && @user.role == "recruiter"
+            session[:user_id] = @user.id
             flash[:notice] = "recruiter was created successfully."
-            redirect_to user
+            redirect_to @user
 
-        elsif user.save && user.role == "admin"
-            session[:user_id] = user.id
+        elsif @user.save && @user.role == "admin"
+            session[:user_id] = @user.id
             flash[:notice] = "admin was created successfully."
             redirect_to admin_path
             
@@ -59,7 +59,9 @@ class UsersController < ApplicationController
     def respond_to_candidate
         @post = Post.find(params[:id])
         @post.is_approved = true    
+        @post.save!
         RespondMailer.respond_to_candidate(@post).deliver_later
+        redirect_to job_posts_path(@post), status: :see_other
     end
     private
         def user_params

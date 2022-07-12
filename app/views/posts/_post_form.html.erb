@@ -3,36 +3,45 @@
     <h1>Apply for this post</h1>
 
     <%= form_with model: [@job, @job.posts.build] do |f|%>
-        <div>
-            <%= f.label :name %>
-            <%= f.text_field :name %> 
+    <div class="form-group row mb-4">
+        <%= f.label :name, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+        <%= f.text_field :name, class: "form-control" %> 
         </div>
-        <br>
-        <div>
-            <%= f.label :post_description %>
-            <%= f.text_area :post_description %>
+    </div>
+    <div class="form-group row mb-4">
+        <%= f.label :post_description, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+        <%= f.text_area :post_description, class: "form-control" %> 
         </div>
-        <br>
-        <div>
-            <%= f.label :username %>
-            <%= f.text_field :username %> 
+    </div>
+    <div class="form-group row mb-4">
+        <%= f.label :username, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+        <%= f.text_field :username, class: "form-control" %> 
         </div>
-        <br>
-        <div>
-            <%= f.label :phone_number %>
-            <%= f.text_field :phone_number %> 
+    </div>
+    <div class="form-group row mb-4">
+        <%= f.label :phone_number, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+        <%= f.text_field :phone_number, class: "form-control" %> 
         </div>
-        <br>
-        <div>
-            <%= f.label :city %>
-            <%= f.text_field :city %> 
+    </div>
+    <div class="form-group row mb-4">
+        <%= f.label :city, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+        <%= f.text_field :city, class: "form-control" %> 
         </div>
-        <br>
-        <div>
-            <%= f.label :file %>
-            <%= f.file_field :file%> 
-        </div>
-        <br>
+    </div>
+    <div class ="col-2 mb-4"> 
+        <%= f.label :file %>
+        <%= f.file_field :file, class: "form-control-file"%> 
+    </div>
+    
+    <div class="form-group row">
+        <div class="col-sm-10 text-center">
         <%= f.submit "Submit", class:"btn btn-primary"%>
+        </div>
+    </div>
     <%end%>
 </div>
