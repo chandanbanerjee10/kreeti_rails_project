@@ -7,7 +7,7 @@
               <div class="card-header text-center font-weight-bold " id = "job-head">    
                   By <%= job.organisation_name%>
               </div>
-              <div class="card-body">
+              <div class="card-body jobs-body">
                 <h5 class="card-title text-success text-left text-decoration-none"><%= link_to job.title, job_path(job)%></h5>
                 <p class="card-text"><%= truncate(job.job_description, length: 100) %></p>
                 <p > <span>Location:</span> <%= job.job_location%></p>
@@ -15,7 +15,10 @@
                 <%= link_to "View", job_path(job), class: "btn btn-outline-primary"%> 
                 <% if logged_in? && job.user == current_user%>
                   <%= link_to "Edit", edit_job_path(job), class: "btn btn-outline-success"%>
-                  <%= link_to "Delete", job_path(job), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"%>
+                  <%= link_to "Delete", job_path(job), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "btn btn-outline-danger"%>
                 <%end%>
               </div>
               <div class="card-footer text-muted">

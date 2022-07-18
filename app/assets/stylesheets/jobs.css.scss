@@ -1,4 +1,4 @@
-span{
+.jobs-body span{
     color: red;
 }
 #job-head, #post-head{
@@ -34,3 +34,7 @@ span{
       margin-right: 1em; }
     .flickr_pagination .next_page {
       margin-left: 1em; }
+
+.job-form-align{
+  display: inline-block;
+}

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     # before_save { self.email = email.downcase }
+    paginates_per 9
     enum role: [:candidate, :recruiter, :admin]
     validates :username, presence: true, length: { minimum: 3, maximum: 25 },
                  uniqueness: { case_sensitive: false }
@@ -37,4 +38,6 @@ class User < ApplicationRecord
     def is_candidate?
         role == "candidate"
     end
+
+    
 end

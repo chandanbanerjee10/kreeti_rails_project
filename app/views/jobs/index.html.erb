@@ -1,6 +1,8 @@
 <div class="position-relative">
   <h1 class = "text-center">List all Jobs</h1>
-  <%=button_to "Create a new Job", new_job_path, class:"btn btn-primary btn position-absolute top-0 end-0",method: :get, id:"job_button" %>
+  <%if !current_user.is_candidate?%>
+    <%=button_to "Create a new Job", new_job_path, class:"btn btn-primary btn position-absolute top-0 end-0",method: :get, id:"job_button" %>
+  <%end%>
 </div>
 
  <div class="flickr_pagination d-flex justify-content-center mt-4">

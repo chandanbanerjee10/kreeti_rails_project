@@ -1,19 +1,13 @@
 <div class="container">
     <h1>Create a new Type</h1>
-    <%if @type.errors.any?%>
-    <h4 class="alert-heading">The following errors prevented the type from being saved</h4>
-        <ul>
-            <% @type.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-            <% end %>
-        </ul>
-    <%end%>
+    <%= render 'shared/errors', obj: @type %>
     <%= form_with(model: @type, url: types_path) do |f|%>
-        <div>
-            <%= f.label :name %>
-            <%= f.text_field :name %> 
+        <div class="form-group row mb-4">
+            <%= f.label :name, class: " col-form-label" %>
+            <div class="col-sm-4">
+                <%= f.text_field :name, class: "form-control" %> 
+            </div>
         </div>
-        <br>
-            <%=f.submit "Submit"%>
+        <%=f.submit "Submit", class: "btn btn-primary"%>
     <%end%>
 </div>

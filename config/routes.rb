@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :reviews
     resources :posts
   end
-
+  get "users/:id/my_posts", to: "posts#my_posts"
   # Chatroom
   get "chatroom", to: "chatroom#index"  
   post 'message', to: 'messages#create'

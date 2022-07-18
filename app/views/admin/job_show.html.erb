@@ -1,16 +1,28 @@
 
-<h1>Job Show For Admin</h1>
-
-<ul>
-    <li><%=@job.title%></li>
-    <li><%=@job.job_description%></li>
-    <li><%=@job.job_location%></li>
-    <li><%=@job.keyskills%></li>
-    <li><%=@job.sector.name%></li>
-    <li><%=@job.type.name%></li>
-    <li><%=@job.user.username%></li>
-</ul>
-
-    <span><%= button_to "Accept", admin_job_approve_path, class: "btn btn-success"%></span><br>
-    <span><%= button_to "Reject", admin_job_reject_path, class:"btn btn-danger" %></span>
+<h1 class = "text-center">Job Show For Admin</h1>
+<div class="container job-container">
+    <div class="row justify-content-md-center">
+        <div class="col-8 mt-6">
+            <div class="card border-secondary shadow mb-5 text-center bg-white rounded job-card">
+                <div class="card-header border-secondary text-center font-weight-bold " id = "job-head">    
+                    <strong><%= @job.organisation_name%></strong>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-success text-left text-decoration-none"><%=@job.title%></h5>
+                    <p class="card-text"><%= simple_format(@job.job_description) %></p>
+                    <p > <span><strong>Location:</strong></span> <%= @job.job_location%></p>
+                    <p> <span><strong> Skills Required:</strong></span> <%=@job.keyskills%></p>
+                    <p> <span><strong> Sector:</strong></span> <%=@job.sector.name%></p>
+                    <p> <span><strong> Type:</strong></span> <%=@job.type.name%></p>
+                    <p> <span><strong> Recruiter:</strong></span> <%=link_to @job.user.username, user_path(@job.user), class: "text-danger"%></p>
+                    <%= button_to "Accept", admin_job_approve_path, class: "btn btn-success mb-4"%>
+                    <%= button_to "Reject", admin_job_reject_path, class:"btn btn-danger" %>
+                </div>
+                <div class="card-footer text-muted">
+                <small> Created <%= time_ago_in_words(@job.created_at)%> ago, Edited <%= time_ago_in_words(@job.updated_at)%> ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     

@@ -1,9 +1,37 @@
-<h1>All job requests are listed</h1>
-
+<div class="text-center">
+    <h1>All job requests are listed</h1>
+    <%res = @jobs.select {|job| job.approved_by == 0}%>
+        <%if res.length == 0 %>
+            <h3 class = "text-success mt-4">No Job request is pending</h3>
+        <%end%>
+</div>
 <div class="container mt-4">
     <%@jobs.each do |j|%>
         <% if j.approved_by == 0 %>    
-            <li><%= link_to j.title, admin_job_show_path(j) %></li>
+            <div class="row justify-content-md-center">
+                <div class="col-6 mt-6">
+                    <div class="card border-secondary shadow mb-5 bg-white rounded post-card">
+                    <div class="card-header text-center font-weight-bold text-success " id = "post-head">    
+                        Posted By <%= link_to j.user.username, user_path(j.user)%>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-danger text-left text-decoration-none"> <%= link_to j.title, admin_job_show_path(j) %></h5>
+                        <p class="card-text"><%= truncate(j.job_description, length: 100) %></p>
+                        <p > <span><strong>Location:</strong></span> <%= j.job_location%></p>
+                        <p> <span><strong>Skills Required:</strong></span> <%=j.keyskills%></p>
+                        <div class="text-center">
+                            <%= link_to "View", admin_job_show_path(j), class: "btn btn-outline-primary"%> 
+                        </div>
+                        <% if %>
+                        
+                        <%end%>
+                    </div>
+                    <div class="card-footer text-muted text-center">
+                        <small> Created <%= time_ago_in_words(j.created_at)%> ago, Edited <%= time_ago_in_words(j.updated_at)%> ago</small>
+                    </div>
+                    </div>
+                </div>
+            </div>
         <%end%>
     <%end%>
 </div>

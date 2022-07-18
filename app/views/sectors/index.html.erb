@@ -1,9 +1,20 @@
 <div class="container mt-4">
-    <h1>List all sectors</h1>
-
+    <h1 class = "text-center">List all sectors</h1>
+    <div class = "mx-4">
+        <%= link_to "Create a new Sector", new_sector_path, class: "btn btn-primary" %>
+    </div>
     <%@sectors.each do |s|%>
-        <li><%= link_to s.name, sector_path(s) %></li>
+        <div class="card border-info sector-card mx-4 mt-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title text-secondary"><%=s.name%></h5>
+                <%= link_to "Edit", edit_sector_path(s), class: "btn btn-outline-success"%>
+                <%= link_to "Delete", sector_path(s), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "btn btn-outline-danger"%>
+            </div>
+        </div>
     <%end%>
 
-    <%= link_to "Create a new Sector", new_sector_path %>
+    
 </div>

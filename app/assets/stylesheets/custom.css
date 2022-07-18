@@ -19,3 +19,7 @@ body{
 #message-submit{
    
 }
+
+.sector-card{
+    display: inline-block !important;
+}

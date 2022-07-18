@@ -11,4 +11,5 @@ class Job < ApplicationRecord
     validates :job_description, presence: true
     validates :job_location, presence: true
     validates :keyskills, presence: true
+    validates :organisation_name, presence: true
 end

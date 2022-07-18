@@ -13,7 +13,6 @@ class  SectorsController < ApplicationController
           flash[:success] = "Sector successfully created"
           redirect_to sectors_path
         else
-          flash[:error] = "Something went wrong"
           render 'new' , status: :unprocessable_entity
         end
     end
@@ -40,11 +39,11 @@ class  SectorsController < ApplicationController
 
     def update
         @sector = Sector.find(params[:id])
+        @sector.user = current_user
         if @sector.update(sector_params)
             flash[:success] = "Sector successfully updated"
             redirect_to sectors_path
         else
-            flash[:error] = "Something went wrong"
             render 'edit' , status: :unprocessable_entity
         end
     end

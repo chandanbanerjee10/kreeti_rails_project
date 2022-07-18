@@ -10,10 +10,9 @@ class  TypesController < ApplicationController
         @type= Type.new(type_params)
         @type.user = current_user
         if @type.save
-          flash[:success] = "Sector successfully created"
+          flash[:success] = "Type successfully created"
           redirect_to types_path
         else
-          flash[:error] = "Something went wrong"
           render 'new' , status: :unprocessable_entity
         end
     end
@@ -30,7 +29,7 @@ class  TypesController < ApplicationController
     def destroy
         @type = Type.find(params[:id])
         @type.destroy
-        flash[:danger] = "Sector successfully deleted"
+        flash[:danger] = "Type successfully deleted"
         redirect_to types_path, status: :see_other
     end
 
@@ -40,11 +39,11 @@ class  TypesController < ApplicationController
 
     def update
         @type = Type.find(params[:id])
-        if @type.update(sector_params)
-            flash[:success] = "Sector successfully updated"
+        @type.user = current_user
+        if @type.update(type_params)
+            flash[:success] = "Type successfully updated"
             redirect_to types_path
         else
-            flash[:error] = "Something went wrong"
             render 'edit' , status: :unprocessable_entity
         end
     end

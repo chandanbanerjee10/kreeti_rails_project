@@ -1,9 +1,18 @@
 <div class="container mt-4">
-    <h1>List all types</h1>
-
-    <%@types.each do |s|%>
-        <li><%= link_to s.name, type_path(s) %></li>
+    <h1 class = "text-center">List all types</h1>
+     <div class = "mx-4">
+        <%= link_to "Create a new Type", new_type_path, class: "btn btn-primary" %>
+    </div>
+    <%@types.each do |t|%>
+        <div class="card border-warning sector-card mx-4 mt-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title text-dark"><%=t.name%></h5>
+                <%= link_to "Edit", edit_type_path(t), class: "btn btn-outline-success"%>
+                <%= link_to "Delete", type_path(t), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "btn btn-outline-danger"%>
+            </div>
+        </div>
     <%end%>
-
-    <%= link_to "Create a new Type", new_type_path %>
 </div>

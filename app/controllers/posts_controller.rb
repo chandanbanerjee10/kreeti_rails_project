@@ -35,6 +35,11 @@ class PostsController < ApplicationController
             redirect_to job_path(@post.job), status: :see_other
         end
     end
+
+    def my_posts
+        @user = User.find(params[:id])
+        @my_posts = @user.posts
+    end
     private
     def post_params
         params.require(:post).permit(:name, :post_description, :username, :phone_number, :city, :file,:job_id)

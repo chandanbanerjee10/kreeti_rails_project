@@ -9,10 +9,10 @@
               <div class="card-body">
                 <h5 class="card-title text-success text-left text-decoration-none"><%=@job.title%></h5>
                 <p class="card-text"><%= simple_format(@job.job_description) %></p>
-                <p > <span>Location:</span> <%= @job.job_location%></p>
-                <p> <span> Skills Required:</span> <%=@job.keyskills%></p>
-                <p> <span> Sector:</span> <%=@job.sector.name%></p>
-                <p> <span> Type:</span> <%=@job.type.name%></p>
+                <p > <span> <strong> Location:</strong></span> <%= @job.job_location%></p>
+                <p> <span> <strong> Skills Required:</strong></span> <%=@job.keyskills%></p>
+                <p> <span> <strong> Sector:</strong></span> <%=@job.sector.name%></p>
+                <p> <span> <strong> Type:</strong></span> <%=@job.type.name%></p>
                 <% if @job.user == current_user || current_user.is_admin?%>
                   <%=link_to "Post Requests", job_posts_path(@job), class: "btn btn-outline-primary"%>
                   <%= link_to "Edit", edit_job_path(@job), class: "btn btn-outline-success"%>

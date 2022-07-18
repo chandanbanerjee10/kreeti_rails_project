@@ -22,10 +22,9 @@ class JobsController < ApplicationController
         @job = Job.new(job_params)
         @job.user = current_user
         if @job.save
-          flash[:success] = "Job successfully created"
+          flash[:success] = "Job successfully created and pending for admin approval"
           redirect_to jobs_path
         else
-          flash[:error] = "Something went wrong"
           render 'new', status: :unprocessable_entity
         end
     end
@@ -56,7 +55,7 @@ class JobsController < ApplicationController
 
     private
     def job_params
-        params.require(:job).permit(:title, :job_description, :job_location, :keyskills, :sector_id, :type_id, :user_id)
+        params.require(:job).permit(:title, :job_description, :job_location, :keyskills, :sector_id, :type_id, :user_id, :organisation_name)
     end
     
 end

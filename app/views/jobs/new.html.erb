@@ -1,50 +1,56 @@
 <div class="container">
     <h1>Create a new Job</h1>
-    <%if @job.errors.any?%>
-    <h4 class="alert-heading">The following errors prevented the job from being saved</h4>
-        <ul>
-            <% @job.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-            <% end %>
-        </ul> 
-    <%end%>
+    <%= render 'shared/errors', obj: @job %>
     <%= form_with(model: @job) do |f|%>
-        <div>
-            <%= f.label :title %>
-            <%= f.text_field :title %> 
+        <div class="form-group row mb-4">
+            <%= f.label :title, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-4">
+                <%= f.text_field :title, class: "form-control" %> 
+            </div>
         </div>
-        <br>
-        <div>
-            <%= f.label :job_description %>
-            <%= f.text_area :job_description %> 
+        <div class="form-group row mb-4">
+            <%= f.label :job_description, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-4">
+                <%= f.text_area :job_description, class: "form-control" %> 
+            </div>
         </div>
-        <br>
-        <div>
-            <%= f.label :job_location %>
-            <%= f.text_field :job_location %> 
+        <div class="form-group row mb-4">
+            <%= f.label :job_location, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-4">
+                <%= f.text_field :job_location, class: "form-control" %> 
+            </div>
         </div>
-        <br>
-        <div>
-            <%= f.label :keyskills %>
-            <%= f.text_field :keyskills %> 
+        <div class="form-group row mb-4">
+            <%= f.label :keyskills, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-4">
+                <%= f.text_field :keyskills, class: "form-control" %> 
+            </div>
         </div>
-        <br>
-        <div>
-            <%= f.label :sector%>
+        <div class="form-group row mb-4">
+            <%= f.label :organisation_name, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-4">
+                <%= f.text_field :organisation_name, class: "form-control" %> 
+            </div>
+        </div>
+        <div class= "mb-4"> 
+            <%= f.label :sector, class: "col-sm-2 col-form-label"%>
             <%= f.collection_select(:sector_id, Sector.all, :id, :name,
-                { prompt: "Select a Job Sector"}) %>
-            <span> Or </span>
-            <%=link_to "Create a New Sector", new_sector_path%>
+                { prompt: "Select a Job Sector"}, class: "col-4 form p-2") %>
+            <div class="job-form-align mx-2">
+                <span class = "mx-2"> Or </span>
+                <%=link_to "Create a New Sector", new_sector_path, class: "btn btn-info"%>
+            </div>
         </div>
-        <br>
-        <div>
-            <%= f.label :type%>
+        <div class = "mb-4">
+            <%= f.label :type, class: "col-sm-2 col-form-label"%>
             <%= f.collection_select(:type_id, Type.all, :id, :name,
-                { prompt: "Select a Job Type"}) %>
-            <span> Or </span>
-            <%=link_to "Create a New Type", new_type_path%>
+                { prompt: "Select a Job Type"}, class: "col-4 form p-2") %>
+            <div class="job-form-align mx-2">
+                <span class = "mx-2"> Or </span>
+                <%=link_to "Create a New Type", new_type_path, class: "btn btn-info"%>
+            </div>
         </div>
         <br>
-        <%=f.submit "Submit"%>
+        <%=f.submit "Submit", class: "btn btn-success"%>
     <%end%>
 </div>

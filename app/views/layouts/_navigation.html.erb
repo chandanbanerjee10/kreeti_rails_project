@@ -6,26 +6,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to "Users", users_path, class:"nav-link"%>
-        </li>
-        <li class="nav-item">
-          
-        </li>
-        <li class="nav-item dropdown">
-          <%# <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown %>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <%# <a class="nav-link disabled">Disabled</a> %>
-        </li>
          <% if !logged_in? %>
         <li class="nav-item">
           <%= link_to 'Login', login_path, class:"nav-link"%>
@@ -37,20 +17,16 @@
         <li class="nav-item">
           <%= link_to current_user.username, user_path(current_user), class:"nav-link" %>
         </li>
+        <%if current_user.is_admin?%>
+          <li class="nav-item">
+            <%= link_to "Admin Panel", admin_path, class:"nav-link" %>
+          </li>
+        <%end%>
         <li class="nav-item">
-          <%= link_to 'Delete Profile', user_path(current_user), data: {
-            turbo_method: :delete,
-            turbo_confirm: "Are you Sure?"}, class:"nav-link text-danger" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Logout', logout_path, data: {turbo_method: :delete}, class:"nav-link" %>
+          <%= link_to 'Logout', logout_path, data: {turbo_method: :delete}, class:"nav-link text-danger" %>
         </li>
         <%end%>
       </ul>
-      <%# <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> %>
       <%= form_with(url: jobs_path, method: :get, data: {turbo_frame: "jobs"}, class:"d-flex") do |f|%>
         <%= f.text_field :query, class: "form-control me-2", placeholder: "Search"%>
         <%= f.submit "Search", class: "btn btn-outline-success"%>
