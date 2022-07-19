@@ -40,6 +40,15 @@
 
 <%= link_to ' <i class="fas fa-user-friends"></i> See Users '.html_safe, users_path, class: "btn btn-success btn-lg mx-2" %>
 
+<div class = "mt-4">
+  <%if !current_user.is_recruiter?%>
+   <%= link_to ' <i class="fas fa-folder"></i> My Posts '.html_safe, my_posts_path, class: "btn btn-danger btn-lg mx-2" %>
+  <%end%>
+  <%if !current_user.is_candidate?%>
+   <%= link_to ' <i class="fas fa-folder"></i> My Jobs '.html_safe, my_jobs_path, class: "btn btn-danger btn-lg mx-2" %>
+  <%end%>
+</div>
+
 <% if @user.role == nil%>
   <h1>Select a Role</h1>
     <%= form_with(model: @user,class: "shadow p-3 mb-5 bg-info rounded") do |f| %>

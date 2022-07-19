@@ -4,7 +4,7 @@ class JobsController < ApplicationController
 
     def index
         if params[:query].present?
-            @jobs = Job.where("title LIKE ? OR job_location LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+            @jobs = Job.where("title LIKE ? OR job_location LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%").page params[:page]
         else
             @jobs = Job.page params[:page]
         end
@@ -39,7 +39,6 @@ class JobsController < ApplicationController
           flash[:success] = "Job was successfully updated"
           redirect_to jobs_path
         else
-          flash[:error] = "Something went wrong"
           render 'edit', status: :unprocessable_entity
         end
     end

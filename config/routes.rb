@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
   post 'users/respond_to_candidate/:id', to: 'users#respond_to_candidate', as: 'respond_to_candidate'
+  get "users/:id/my_posts", to: "users#my_posts", as: 'my_posts' 
+  get "users/:id/my_jobs", to: "users#my_jobs", as: 'my_jobs' 
   #  Admin
   get 'admin', to: 'admin#home'   
   get 'admin/job_requests', to: 'admin#job_requests'
@@ -36,7 +38,7 @@ Rails.application.routes.draw do
     resources :reviews
     resources :posts
   end
-  get "users/:id/my_posts", to: "posts#my_posts"
+  
   # Chatroom
   get "chatroom", to: "chatroom#index"  
   post 'message', to: 'messages#create'

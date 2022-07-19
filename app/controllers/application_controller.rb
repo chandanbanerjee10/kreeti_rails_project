@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
             redirect_to login_path
         elsif current_user.role != "admin"
             session[:user_id] = nil
-            flash[:alert] = "You must be a admin to perform that action"
+            flash[:alert] = "You must be an admin to perform that action"
             redirect_to login_path
         end
     end

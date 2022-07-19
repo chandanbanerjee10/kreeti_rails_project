@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show, :destroy]
     before_action :require_user, only: [:edit, :update]
     # before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_candidate, only: [:my_posts]
 
     def new
         @user = User.new
@@ -63,6 +64,17 @@ class UsersController < ApplicationController
         RespondMailer.respond_to_candidate(@post).deliver_later
         redirect_to job_posts_path(@post), status: :see_other
     end
+
+    def my_posts
+        @user = User.find(params[:id])
+        @my_posts = @user.posts.page params[:page]
+    end
+
+    def my_jobs
+        @user = User.find(params[:id])
+        @my_jobs = @user.jobs.page params[:page]
+    end
+
     private
         def user_params
             params.require(:user).permit(:username,:email,:password,:role)

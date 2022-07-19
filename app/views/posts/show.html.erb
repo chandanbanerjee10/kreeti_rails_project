@@ -10,14 +10,14 @@
           <div class="card-body">
             <h5 class="card-title text-success text-left text-decoration-none"> <%= @post.name%></h5>
             <p class="card-text"><%= @post.post_description %></p>
-            <p > <span>Phone Number:</span> <%= @post.phone_number%></p>
-            <p> <span> City:</span> <%=@post.city%></p>
-            <p> <span> Username:</span> <%=@post.username%></p>
+            <p > <strong>Phone Number:</strong> <%= @post.phone_number%></p>
+            <p> <strong> City:</strong> <%=@post.city%></p>
+            <p> <strong> Username:</strong> <%=@post.username%></p>
             <% if @post.file.attached?%>
               <%=button_to @post.file.filename, url_for(@post.file), method: :get, class: "btn btn-primary"%>
             <%end%>
           </div>
-          <div class="card-footer text-muted">
+          <div class="card-footer text-center text-muted">
             <small> Created <%= time_ago_in_words(@post.created_at)%> ago, Edited <%= time_ago_in_words(@post.updated_at)%> ago</small>
           </div>
         </div>

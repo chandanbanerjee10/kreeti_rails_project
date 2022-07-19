@@ -1,6 +1,7 @@
 class  TypesController < ApplicationController
     before_action :require_user 
-    before_action :require_admin_recruiter, except: [:index, :show]
+    before_action :require_admin_recruiter, only: [:new, :create]
+    before_action :require_admin, except: [:new, :create]
 
     def new
         @type = Type.new
@@ -9,21 +10,29 @@ class  TypesController < ApplicationController
     def create
         @type= Type.new(type_params)
         @type.user = current_user
-        if @type.save
-          flash[:success] = "Type successfully created"
-          redirect_to types_path
+        if current_user.is_admin?
+            if @type.save
+            flash[:success] = "Type successfully created"
+            redirect_to types_path
+            else
+            render 'new' , status: :unprocessable_entity
+            end
         else
-          render 'new' , status: :unprocessable_entity
+            if @type.save
+                flash[:success] = "Type successfully created"
+                redirect_to new_type_path
+            else
+                render 'new' , status: :unprocessable_entity
+            end
         end
     end
     
     def show
-        # debugger
         @type = Type.find(params[:id])
     end
 
     def index
-        @types = Type.all
+        @types = Type.page params[:page]
     end
 
     def destroy

@@ -1,9 +1,9 @@
 <h2>Reviews</h2>
   <% @job.reviews.each do |review| %>
     <p>
-      <strong>Review:</strong>
+      <strong><%= link_to review.user.username, user_path(review.user), class: "reviews"%>:</strong>
       <%if review.user%>
-      <%= review.content %> <span> by </span> <%= link_to review.user.username , user_path(review.user)%>
+        <%= review.content %>
       <%end%>
     </p>
   <% end %>

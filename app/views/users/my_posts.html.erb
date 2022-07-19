@@ -24,7 +24,7 @@
                         <%end%>
                     </div>
                 </div>
-                <div class="card-footer text-muted">
+                <div class="card-footer text-muted text-center">
                     <small> Created <%= time_ago_in_words(post.created_at)%> ago, Edited <%= time_ago_in_words(post.updated_at)%> ago</small>
                 </div>
                 </div>
@@ -32,3 +32,6 @@
         </div>
     </div>
 <%end%>
+<div class="flickr_pagination d-flex justify-content-center mt-4">
+    <%= paginate @my_posts%>
+</div>
