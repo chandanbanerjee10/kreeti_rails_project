@@ -37,7 +37,5 @@ class User < ApplicationRecord
 
     def is_candidate?
         role == "candidate"
-    end
-
-    
+    end    
 end

@@ -2,7 +2,7 @@
     <h1>Post Requests for this Job</h1>
      <%res = @posts.select {|post| !post.is_approved?}%>
         <%if res.length == 0 %>
-            <h3 class = "text-success mt-4">No Post request is pending</h3>
+            <h3 class = "text-success mt-4 mb-4">No Post request is pending</h3>
         <%end%>
      <% @posts.each do |post| %>
         <%if post.job == @job && !post.is_approved?%>
@@ -27,6 +27,6 @@
             </div>
         <%end%>
     <%end%>
-    <h1>List of Qualified Candidates for this Job</h1>
+    <h1 class = "mt-4">List of Qualified Candidates for this Job</h1>
     <%= render 'posts'%>
 </div>

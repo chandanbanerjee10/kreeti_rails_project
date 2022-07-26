@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
     before_action :require_user , only: [:index, :show] 
     before_action :require_recruiter , except: [:index, :show] 
+    before_action :require_same_recruiter, only: [:edit, :update, :destroy] 
 
     def index
         if params[:query].present?
@@ -55,6 +56,14 @@ class JobsController < ApplicationController
     private
     def job_params
         params.require(:job).permit(:title, :job_description, :job_location, :keyskills, :sector_id, :type_id, :user_id, :organisation_name)
+    end
+
+    def require_same_recruiter
+        @job = Job.find(params[:id])
+        if current_user != @job.user
+            flash[:danger] = "You can only edit or delete your own jobs"
+            redirect_to jobs_path
+        end
     end
     
 end
