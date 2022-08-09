@@ -1,7 +1,6 @@
-
 <div class="container">
     <h1 class = "text-center"> <i class="fa fa-users"></i>
-       <p> Friends </p>
+       <p> ChatBox </p>
     </h1> 
     <div class="row">
         <div class="card col-8 chatbox">
@@ -11,7 +10,7 @@
                 </div>
             </div>    
             <div class="container" id = "message-submit">  
-                <%= form_for(@message, html: {class: "input-group mb-3"}, url: message_path, method: :post, remote: true, data: {turbo_frame: "messages"}) do |f|%>
+                <%= form_for(@message, html: {class: "input-group mb-3"}, url: message_path, method: :post, local: true, data: {turbo_frame: "messages"}) do |f|%>
                         <%= f.text_field :body, placeholder: "Write a message", class: "form-control"%>
                         <div class="input-group-append">
                             <%= f.button "Send", class: "btn btn-outline-secondary", id: "demo"%>
@@ -20,19 +19,15 @@
             </div>   
         </div>
         <div class="col-4 ">
-             <div class="card chatbox">
-                <ul class="list-group bg-dark">
-                    <li class="list-group-item d-flex justify-content-between align-items-center ">
-                        Home
-                        <span class="badge bg-primary rounded-pill">14</span>
+            <div class="card chatbox">
+                <ul class="list-group bg-dark"> 
+                    <li class = "list-group-item d-flex justify-content-between align-items-center ">
+                        <%= link_to "Home", root_path%>
+                        <span class="badge bg-primary rounded-pill">H</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Messages
-                        <span class="badge bg-primary rounded-pill">2</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Friends
-                        <span class="badge bg-primary rounded-pill">1</span>
+                        <%= link_to "See Users", users_path %>
+                        <span class="badge bg-primary rounded-pill"><%= User.all.count%></span>
                     </li>
                 </ul>
             </div>
@@ -42,12 +37,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     console.log("yes")
-    function scroll_bottom(){
-        var m = document.getElementById('message-container');
-        m.scrollTop = m.scrollHeight;    
-        debugger;
-    }  
-    $(document).on('turbolinks:load', function(){
-        scroll_bottom();
-    })
+    $( document ).on('turbolinks:load', function() {
+        console.log("It works on each visit!")
+    });
 </script>

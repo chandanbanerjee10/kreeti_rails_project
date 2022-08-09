@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:session][:password])
             session[:user_id] = @user.id
             flash[:notice] = "logged in successfully"
-            if @user.role == "admin"
+            if @user.is_admin?
                 redirect_to admin_path
             else
-            redirect_to @user
+                redirect_to @user
             end
         else
             flash.now[:danger] = "There is something wrong with your login information"
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     def destroy
         session[:user_id] = nil
         flash[:notice] = "Logged out Successfully"
-        redirect_to users_path, status: :see_other
+        redirect_to root_path, status: :see_other
     end
 
     def omniauth

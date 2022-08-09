@@ -1,45 +1,36 @@
-<h1>Edit the User</h1>
+<h1>Edit Your Profile Details</h1>
 
-<%if @user.errors.any?%>
- <h4 class="alert-heading">The following errors prevented the user from being saved</h4>
-    <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-    </ul>
-<%end%>
-  <%= form_with(model: @user,class: "shadow p-3 mb-5 bg-info rounded") do |f| %>
-        <div class = "form-group row">
-            <%= f.label :username, class: "col-2 col-form-label text-light "%><br/>
-            <div class="col-10">
-                <%= f.text_field :username, class: "form-control shadow rounded", placeholder:"Enter an Username"%>
-            </div>
+<%= render 'shared/errors', obj: @user %>
+<%= form_with(model: @user,class: "shadow p-3 mb-5 bg-success rounded mt-4") do |f| %>
+    <div class = "form-group row">
+        <%= f.label :username, class: "col-2 col-form-label text-light "%><br/>
+        <div class="col-10">
+            <%= f.text_field :username, class: "form-control shadow rounded", placeholder:"Enter an Username"%>
         </div>
+    </div>
 
-        <div class = "form-group row mt-4">
-            <%= f.label :email, class: "col-2 col-form-label text-white" %><br/>
-            <div class="col-10">
-                <%= f.email_field :email, rows:10, class: "form-control shadow rounded", placeholder:"Enter your email"%>
-            </div>
+    <div class = "form-group row mt-4">
+        <%= f.label :email, class: "col-2 col-form-label text-white" %><br/>
+        <div class="col-10">
+            <%= f.email_field :email, rows:10, class: "form-control shadow rounded", placeholder:"Enter your email"%>
         </div>
+    </div>
 
-        <div class = "form-group row mt-4">
-            <%= f.label :password, class: "col-2 col-form-label text-white" %><br/>
-            <div class="col-10">
-                <%= f.password_field :password, rows:10, class: "form-control shadow rounded", placeholder:"Enter your password"%>
-            </div>
+    <div class = "form-group row mt-4">
+        <%= f.label :password, class: "col-2 col-form-label text-white" %><br/>
+        <div class="col-10">
+            <%= f.password_field :password, rows:10, class: "form-control shadow rounded", placeholder:"Enter your password"%>
         </div>
+    </div>
 
-        <div class = "form-group row mt-4">
-            <%= f.label :role, class: "col-2 col-form-label text-white" %><br/>
-            <div class="col-10">
-                <%= f.select :role, User.roles.keys %>
-            </div>
+    <div class = "form-group row mt-4">
+        <%= f.label :role, class: "col-2 col-form-label text-white" %><br/>
+        <div class="col-10">
+            <%= f.select :role, User.roles.keys %>
         </div>
+    </div>
 
-        <div style = "margin-top:15px;">
-            <%= f.submit %>
-        </div>
-    <% end %>
-    <br>
-<%= link_to "Users Page", users_path%>
+    <div class = "text-center" style = "margin-top:15px;">
+        <%= f.submit class: "btn btn-primary"%>
+    </div>
+<% end %>

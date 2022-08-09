@@ -1,9 +1,7 @@
 class PagesController < ApplicationController
 
     def home
-      # if !logged_in?
-      #   redirect_to login_path
-      # end
+      @jobs = Job.order("id").page(params[:page]).per(6)
     end
   
     def about

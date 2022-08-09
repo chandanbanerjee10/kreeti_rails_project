@@ -1,4 +1,30 @@
-<h1>This is Home page</h1>
-<%=link_to "Users List", users_path%>
-<%= link_to "Chatroom", chatroom_path%>
-<%= link_to "Admin", admin_path%>
+<h1 class = "text-center">This is Home page</h1>
+  <% @jobs.each do |job| %>
+    <%if job.approved_by != 0%>
+      <div class="sector-card mx-4 my-4" style="width: 20rem;">
+          <div class="col-12 mt-6">
+            <div class="card border-warning shadow mb-5 bg-white rounded job-card">
+              <div class="card-header text-center font-weight-bold " id = "job-head">    
+                  By <%= job.organisation_name%>
+              </div>
+              <div class="card-body jobs-body">
+                <h5 class="card-title text-success text-left text-decoration-none"><%= link_to job.title, job_path(job)%></h5>
+                <p class="card-text"><%= truncate(job.job_description, length: 100) %></p>
+                <p > <span>Location:</span> <%= job.job_location%></p>
+                <p> <span> Skills Required:</span> <%=job.keyskills%></p>
+                <div class="text-center">
+                  <%= link_to "View", job_path(job), class: "btn btn-outline-primary"%> 
+                </div>
+              </div>
+              <div class="card-footer text-muted">
+                <small> Created <%= time_ago_in_words(job.created_at)%> ago, Edited <%= time_ago_in_words(job.updated_at)%> ago</small>
+              </div>
+            </div>
+          </div>
+      </div>
+    <%end%>
+<%end%>
+
+<div class="flickr_pagination d-flex justify-content-center mb-4">
+    <%= paginate @jobs%>
+</div>

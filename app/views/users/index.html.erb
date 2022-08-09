@@ -1,6 +1,5 @@
 <h1>List of users</h1>
 <% @users.each do |user|%>
-
     <div class="card border-warning sector-card mx-4 my-4" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title text-dark"><%= link_to user.username, user%></h5>

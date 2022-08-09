@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show, :destroy]
     before_action :require_user, only: [:edit, :update]
-    # before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_same_user, only: [:edit, :update, :destroy, :my_posts, :my_jobs]
     before_action :require_candidate, only: [:my_posts]
+    before_action :require_recruiter, only: [:my_jobs]
+    before_action :require_admin, only: [:index]
 
     def new
         @user = User.new
@@ -85,9 +87,12 @@ class UsersController < ApplicationController
         end
 
         def require_same_user
+            @user = User.find(params[:id])
             if current_user != @user
               flash[:danger] = "You can only edit or delete your own account"
-              redirect_to @user
+              session[:user_id] = nil
+              redirect_to login_path
             end
         end
+
 end
