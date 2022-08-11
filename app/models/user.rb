@@ -23,7 +23,7 @@ class User < ApplicationRecord
     has_many :jobs, dependent: :destroy
 
     # Messages
-    has_many :messages
+    has_many :messages, dependent: :destroy
     # Reviews
     has_many :reviews
 

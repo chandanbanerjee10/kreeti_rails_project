@@ -26,7 +26,7 @@
     <div class = "form-group row mt-4">
         <%= f.label :role, class: "col-2 col-form-label text-white" %><br/>
         <div class="col-10">
-            <%= f.select :role, User.roles.keys, class: "col-4 form p-2" %>
+            <%= f.select :role,["candidate", "recruiter"], class: "col-4 form p-2" %>
         </div>
     </div>
 

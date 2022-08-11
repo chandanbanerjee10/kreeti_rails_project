@@ -5,7 +5,7 @@
       <div class="col-6 mt-6">
         <div class="card shadow mb-5 bg-white rounded post-card">
           <div class="card-header text-center font-weight-bold " id = "post-head">    
-              Posted By <%= link_to @post.user.username, user_path(@post.user)%>
+              Posted By <%= link_to @post.user.username, user_path(@post.user), class: "text-danger"%>
           </div>
           <div class="card-body">
             <h5 class="card-title text-success text-left text-decoration-none"> <%= @post.name%></h5>
@@ -13,9 +13,11 @@
             <p > <strong>Phone Number:</strong> <%= @post.phone_number%></p>
             <p> <strong> City:</strong> <%=@post.city%></p>
             <p> <strong> Username:</strong> <%=@post.username%></p>
-            <% if @post.file.attached?%>
-              <%=button_to @post.file.filename, url_for(@post.file), method: :get, class: "btn btn-primary"%>
-            <%end%>
+            <div class="text-center">
+              <% if @post.file.attached?%>
+                <%=button_to @post.file.filename, url_for(@post.file), method: :get, class: "btn btn-primary"%>
+              <%end%>
+            </div>
           </div>
           <div class="card-footer text-center text-muted">
             <small> Created <%= time_ago_in_words(@post.created_at)%> ago, Edited <%= time_ago_in_words(@post.updated_at)%> ago</small>

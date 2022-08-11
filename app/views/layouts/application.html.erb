@@ -19,13 +19,17 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     </head>
 
-  <body>
-    <%= render 'layouts/navigation' %>
-    <%= render 'layouts/flash_messages' %>
-    <div class="container">
-      <%= yield %>
+  <body class = "d-flex flex-column">
+    <div id="page-content">
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/flash_messages' %>
+      <div class="container">
+        <%= yield %>
+      </div>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
+
   <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <%# JQuery Added %>

@@ -36,37 +36,36 @@
 
   <%= link_to ' <i class="fa fa-gear"></i> Edit Profile '.html_safe, edit_user_path, class: "btn btn-secondary btn-lg mx-2" %>
 
-  <%if !current_user.is_recruiter?%>
-    <%= link_to ' <i class="far fa-comments"></i> Chat Here '.html_safe, chatroom_path, class: "btn btn-primary btn-lg mx-2" %>
-  <%end%>
-
   <%= link_to ' <i class="fas fa-briefcase"></i> Find Jobs '.html_safe, jobs_path, class: "btn btn-info btn-lg mx-2" %>
 
   <%if current_user.is_admin?%>
     <%= link_to ' <i class="fas fa-user-friends"></i> See Users '.html_safe, users_path, class: "btn btn-success btn-lg mx-2" %>
   <%end%>
 
+  <%= link_to ' <i class="fas fa-trash"></i> Delete Your Account '.html_safe, user_path(@user), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete your account?"},class: "btn btn-danger btn-lg mx-2" %>
+  
+
   <div class = "mt-4">
-    <%if !current_user.is_recruiter?%>
-    <%= link_to ' <i class="fas fa-folder"></i> My Posts '.html_safe, my_posts_path, class: "btn btn-danger btn-lg mx-2" %>
+    <%if current_user.is_candidate?%>
+      <%= link_to ' <i class="fas fa-folder"></i> My Posts '.html_safe, my_posts_path, class: "btn btn-danger btn-lg mx-2" %>
+      <%= link_to ' <i class="far fa-comments"></i> Chat Here '.html_safe, chatroom_path, class: "btn btn-primary btn-lg mx-2" %>
     <%end%>
-    <%if !current_user.is_candidate?%>
-    <%= link_to ' <i class="fas fa-folder"></i> My Jobs '.html_safe, my_jobs_path, class: "btn btn-danger btn-lg mx-2" %>
+    <%if current_user.is_recruiter?%>
+      <%= link_to ' <i class="fas fa-folder"></i> My Jobs '.html_safe, my_jobs_path, class: "btn btn-primary btn-lg mx-2" %>
+      <%= link_to ' <i class="fas fa-pen"></i> Create Job '.html_safe, new_job_path, class: "btn btn-primary btn-lg mx-2" %>
     <%end%>
   </div>
 <%end%>
 
-<% if @user.role == nil%>
+<%if @user.role == nil%>
   <h1>Select a Role</h1>
     <%= form_with(model: @user,class: "shadow p-3 mb-5 bg-success rounded") do |f| %>
       <div class = "form-group row mt-4">
         <%= f.label :role, class: "col-2 col-form-label text-white" %><br/>
         <div class="col-10">
-          <%= f.select :role, User.roles.keys %>
+          <%= f.select :role, ["candidate", "recruiter"], class: "mx-1"%>
+          <%= f.submit "Choose a Role", class: "btn btn-primary mx-5"%>
         </div>
-      </div>
-      <div class = "text-center" style = "margin-top:15px;">
-        <%= f.submit "Choose a Role", class: "btn btn-primary"%>
       </div>
     <%end%>
 <%end%>

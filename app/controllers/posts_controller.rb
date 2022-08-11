@@ -16,8 +16,8 @@ class PostsController < ApplicationController
           flash[:success] = "Job Post successfully created"
           redirect_to @job
         else
-          flash[:error] = "Something went wrong"
-          render 'new' , status: :unprocessable_entity
+          flash[:danger] = "Incorrect Credentials"
+          redirect_to @job
         end
     end
     

@@ -4,7 +4,7 @@ class Job < ApplicationRecord
     belongs_to :type
     belongs_to :sector
     has_many :posts, dependent: :destroy
-    has_many :reviews
+    has_many :reviews, dependent: :destroy
 
     # Validations
     validates :title, presence: true, length: { minimum: 1, maximum: 25 }

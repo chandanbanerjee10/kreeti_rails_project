@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :update, :show, :destroy]
-    before_action :require_user, only: [:edit, :update]
+    before_action :require_user, only: [:show]
     before_action :require_same_user, only: [:edit, :update, :destroy, :my_posts, :my_jobs]
     before_action :require_candidate, only: [:my_posts]
     before_action :require_recruiter, only: [:my_jobs]
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
         @user.destroy
         session[:user_id] = nil
         flash[:danger] = "Account successfully deleted"
-        redirect_to users_path, status: :see_other
+        redirect_to root_path, status: :see_other
     end
 
     def respond_to_candidate

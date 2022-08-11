@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_25_112353) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_11_064921) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,21 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_112353) do
     t.text "content"
     t.integer "user_id"
     t.integer "job_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.boolean "candidate"
-    t.boolean "recruiter"
-    t.boolean "admin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sector_types", force: :cascade do |t|
-    t.integer "sector_id"
-    t.integer "type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,9 +2,6 @@ a{
     text-decoration: none !important;
     color: blue ;
 }
-body{
-    background-color: rgba(255, 255, 255, 0.356);
-}
 
 .nav-link{
     color: green !important;
@@ -22,4 +19,15 @@ body{
 
 .sector-card{
     display: inline-block !important;
+}
+
+// Footer
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+  background-color: rgb(219, 216, 216);
 }

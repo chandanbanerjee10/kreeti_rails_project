@@ -1,10 +1,4 @@
-<div class="position-relative">
-  <h1 class = "text-center">List all Jobs</h1>
-  <%if !current_user.is_candidate?%>
-    <%=button_to "Create a new Job", new_job_path, class:"btn btn-primary btn position-absolute top-0 end-0",method: :get, id:"job_button" %>
-  <%end%>
-</div>
-
+<h1 class = "text-center">List all Jobs</h1>
 <div class="flickr_pagination d-flex justify-content-center mt-4">
     <%= paginate @jobs%>
 </div>
