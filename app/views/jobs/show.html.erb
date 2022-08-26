@@ -4,7 +4,7 @@
 
 <div class="row mb-4">
   <div class="col">
-    <%= render 'posts/post_form' %>
+    <%= render 'posts/post_form' if current_user.is_candidate?%>
   </div>
   <div class="col">
     <%= render 'reviews/review'%>

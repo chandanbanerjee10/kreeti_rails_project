@@ -12,4 +12,12 @@ class RespondMailer < ApplicationMailer
     @recruiter = @post.job.user
     mail to: @candidate.email, subject: "Congratulations on this Job Offer", from: @recruiter.email
   end
+
+  def reject_candidate(object)
+    @post = object
+    @job = @post.job
+    @candidate = @post.user
+    @recruiter = @post.job.user
+    mail to: @candidate.email, subject: "Your Job Application to #{@job.organisation_name}", from: @recruiter.email
+  end
 end

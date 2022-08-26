@@ -2,3 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "channels"
+
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});

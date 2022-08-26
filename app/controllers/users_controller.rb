@@ -19,21 +19,20 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        if @user.save && @user.role == "candidate"
+        if @user.save && @user.is_candidate?
             session[:user_id] = @user.id
             flash[:notice] = "candidate was created successfully."
             redirect_to @user
-        elsif @user.save && @user.role == "recruiter"
+        elsif @user.save && @user.is_recruiter?
             session[:user_id] = @user.id
             flash[:notice] = "recruiter was created successfully."
             redirect_to @user
-
-        elsif @user.save && @user.role == "admin"
+        elsif @user.save && @user.is_admin?
             session[:user_id] = @user.id
             flash[:notice] = "admin was created successfully."
             redirect_to admin_path
-            
         else
+            flash[:notice] = "There was a problem creating the user"
             render 'new', status: :unprocessable_entity
         end
     end
@@ -53,18 +52,14 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        @user.destroy
-        session[:user_id] = nil
-        flash[:danger] = "Account successfully deleted"
-        redirect_to root_path, status: :see_other
-    end
-
-    def respond_to_candidate
-        @post = Post.find(params[:id])
-        @post.is_approved = true    
-        @post.save!
-        RespondMailer.respond_to_candidate(@post).deliver_later
-        redirect_to job_posts_path(@post), status: :see_other
+        if @user.destroy
+            session[:user_id] = nil
+            flash[:danger] = "Account successfully deleted"
+            redirect_to root_path, status: :see_other
+        else
+            flash[:notice] = "There was a problem deleting this account. Please Try again"
+            redirect_to root_path, status: :see_other
+        end
     end
 
     def my_posts

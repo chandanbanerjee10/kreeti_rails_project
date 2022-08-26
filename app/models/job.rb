@@ -12,4 +12,9 @@ class Job < ApplicationRecord
     validates :job_location, presence: true
     validates :keyskills, presence: true
     validates :organisation_name, presence: true
+
+    # Scope
+    scope :sector, ->(abc) { joins(:sector).where("name LIKE?", "%#{abc}%")}
+    # Ex:- scope :active, -> {where(:active => true)}
+    scope :type, ->(abc) { joins(:type).where("name LIKE?", "%#{abc}%")}
 end

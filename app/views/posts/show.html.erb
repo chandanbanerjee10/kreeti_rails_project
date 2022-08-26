@@ -27,14 +27,13 @@
   </div>
 </div>
 
-
-  <div class="text-center">
-    <%if !@post.is_approved?%>
-      <%= button_to "Accept", respond_to_candidate_path, class: "btn btn-success mb-4"%>
-      <%= link_to "Reject", job_post_path(@post), class: "btn btn-danger", data: {
-                          turbo_method: :delete,
-                          turbo_confirm: "Are you sure you want to delete this post?"
-                        }%>
-    <%end%>
-  </div>
+<div class="text-center mb-4">
+  <%if !@post.is_approved?%>
+    <%= button_to "Accept", respond_to_candidate_path, class: "btn btn-success mb-4"%>
+    <%= link_to "Reject", reject_candidate_path(@post), class: "btn btn-danger", data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure you want to delete this post?"
+                      }%>
+  <%end%>
+</div>
 

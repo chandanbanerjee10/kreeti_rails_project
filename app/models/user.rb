@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-    # before_save { self.email = email.downcase }
+    before_save { self.email = email.downcase }
     paginates_per 9
     enum role: [:candidate, :recruiter, :admin]
-    validates :username, presence: true, length: { minimum: 3, maximum: 25 },
-                 uniqueness: { case_sensitive: false }
+    VALID_USERNAME = /\A([a-zA-Z]){2}([0-9a-zA-Z_.@\-\s]){1,25}\z/
+    validates :username, presence: true, uniqueness: { case_sensitive: false },
+                format:{with: VALID_USERNAME}
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

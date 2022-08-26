@@ -27,10 +27,68 @@
         </li>
         <%end%>
       </ul>
-      <%= form_with(url: jobs_path, method: :get, data: {turbo_frame: "jobs"}, class:"d-flex") do |f|%>
-        <%= f.text_field :query, class: "form-control me-2", placeholder: "Search"%>
-        <%= f.submit "Search", class: "btn btn-outline-success"%>
-      <%end%>
+      <div class="btn-group" id = "form" >
+        <%= form_with(url: jobs_path, method: :get, data: {turbo_frame: "jobs"}, class:"d-flex", id: "form") do |f|%>
+          <%= f.text_field :query, class: "form-control me-2", placeholder: "Search Job Details", id: "obj1"%>
+          <%= f.submit "Search", class: "btn btn-outline-success"%>
+            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <%= f.text_field :type, class: "form-control me-2", placeholder: "Search Type", id: "obj2", onclick: "swap1()"%>
+              <%= f.text_field :sector, class: "form-control me-2", placeholder: "Search Sector", id: "obj3", onclick: "swap2()"%>
+            </ul>
+        <%end%>
+      </div>
     </div>
   </div>
 </nav>
+
+<script>
+  form = document.getElementById("form")
+  obj1 = document.getElementById("obj1")
+  obj2 = document.getElementById("obj2")
+  obj3 = document.getElementById("obj3")
+
+  function swap1(){
+    form.innerHTML = `<%= form_with(url: jobs_path, method: :get, data: {turbo_frame: "jobs"}, class:"d-flex", id: "form") do |f|%>
+          <%= f.text_field :type, class: "form-control me-2", placeholder: "Search Type", id: "obj2"%>
+          <%= f.submit "Search", class: "btn btn-outline-success"%>
+            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <%= f.text_field :query, class: "form-control me-2", placeholder: "Search Job Details", id: "obj1", onclick: "swap2()"%>
+              <%= f.text_field :sector, class: "form-control me-2", placeholder: "Search Sector", id: "obj3", onclick: "swap2()"%>
+            </ul>
+        <%end%>`;
+  }
+
+  function swap2(){
+    form.innerHTML = `<%= form_with(url: jobs_path, method: :get, data: {turbo_frame: "jobs"}, class:"d-flex", id: "form") do |f|%>
+          <%= f.text_field :sector, class: "form-control me-2", placeholder: "Search Sector", id: "obj3"%>
+          <%= f.submit "Search", class: "btn btn-outline-success"%>
+            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <%= f.text_field :query, class: "form-control me-2", placeholder: "Search Job Details", id: "obj1", onclick: "swap3()"%>
+               <%= f.text_field :type, class: "form-control me-2", placeholder: "Search Type", id: "obj2", onclick: "swap1()"%>
+            </ul>
+        <%end%>`;
+  }
+
+  function swap3(){
+    form.innerHTML = `<%= form_with(url: jobs_path, method: :get, data: {turbo_frame: "jobs"}, class:"d-flex", id: "form") do |f|%>
+           <%= f.text_field :query, class: "form-control me-2", placeholder: "Search Job Details", id: "obj1"%>
+          <%= f.submit "Search", class: "btn btn-outline-success"%>
+            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+               <%= f.text_field :type, class: "form-control me-2", placeholder: "Search Type", id: "obj2", onclick: "swap1()"%>
+                <%= f.text_field :sector, class: "form-control me-2", placeholder: "Search Sector", id: "obj3", onclick: "swap3()"%>
+            </ul>
+        <%end%>`;
+  }
+</script>

@@ -5,12 +5,16 @@ class JobsController < ApplicationController
 
     def index
         if params[:query].present?
-            @jobs = Job.where("title LIKE ? OR job_location LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%").page params[:page]
+            @jobs = Job.where("title LIKE ? OR job_location LIKE ? OR keyskills LIKE?", "%#{params[:query]}%","%#{params[:query]}%", "%#{params[:query]}%").page params[:page]
+        elsif params[:sector].present?
+            @jobs = Job.all.sector(params[:sector]).page params[:page]
+        elsif params[:type].present?
+            @jobs = Job.all.type(params[:type]).page params[:page]    
         else
             @jobs = Job.page params[:page]
         end
     end
-
+    
     def show
         @job = Job.find(params[:id])
     end
@@ -49,10 +53,12 @@ class JobsController < ApplicationController
         if @job.destroy
             flash[:success] = 'Job is successfully deleted.'
             redirect_to jobs_path, status: :see_other
+        else
+            flash[:notice] = 'There was an error regarding deletion of this job'
+            redirect_to jobs_path, status: :see_other
         end
     end
     
-
     private
     def job_params
         params.require(:job).permit(:title, :job_description, :job_location, :keyskills, :sector_id, :type_id, :user_id, :organisation_name)

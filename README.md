@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+<!-- User.where(User.arel_table[:first_name].matches("%#{first_name}%")) -->

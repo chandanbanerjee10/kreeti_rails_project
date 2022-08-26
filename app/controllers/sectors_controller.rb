@@ -37,9 +37,13 @@ class  SectorsController < ApplicationController
 
     def destroy
         @sector = Sector.find(params[:id])
-        @sector.destroy
-        flash[:danger] = "Sector successfully deleted"
-        redirect_to sectors_path, status: :see_other
+        if @sector.destroy
+            flash[:danger] = "Sector successfully deleted"
+            redirect_to sectors_path, status: :see_other
+        else
+            flash[:notice] = "There was a problem regarding deletion of this sector"
+            redirect_to sectors_path, status: :see_other
+        end
     end
 
     def edit

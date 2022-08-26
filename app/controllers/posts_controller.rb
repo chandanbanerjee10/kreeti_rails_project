@@ -3,11 +3,12 @@ class PostsController < ApplicationController
     before_action :require_admin_recruiter, only:[:index, :destroy]
     before_action :require_same_recruiter, only:[:index]
     before_action :require_same_post_id, only:[:show]
+
     def new
         @post = Post.new
     end
 
-    def create
+    def create  
         @post = Post.create(post_params)   
         @job = Job.find(params[:job_id])
         @post.job = @job
@@ -35,6 +36,32 @@ class PostsController < ApplicationController
         if @post.destroy
             flash[:danger] = "Job post successfully deleted"
             redirect_to job_path(@post.job), status: :see_other
+        else
+            flash[:danger] = "There was a problem regarding deletion of this post"
+            redirect_to job_path(@post.job), status: :see_other
+        end
+    end
+
+    def respond_to_candidate
+        @post = Post.find(params[:id])   
+        if @post.save
+            @post.is_approved = true
+            @post.save! 
+            flash[:notice] = "Mail has been sent to the candidate"
+            RespondMailer.respond_to_candidate(@post).deliver_later
+            redirect_to job_posts_path(@post), status: :see_other
+        end
+    end
+
+    def reject_candidate
+        @post = Post.find(params[:id])
+        RespondMailer.reject_candidate(@post).deliver_later
+        if @post.destroy
+            flash[:notice] = "The post has been deleted"
+            redirect_to job_path(@post.job), status: :see_other
+        else
+            flash[:notice] = "There was some error regarding deletion of this post"
+            redirect_to job_path(@post.job)
         end
     end
 

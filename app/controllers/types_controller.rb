@@ -37,9 +37,13 @@ class  TypesController < ApplicationController
 
     def destroy
         @type = Type.find(params[:id])
-        @type.destroy
-        flash[:danger] = "Type successfully deleted"
-        redirect_to types_path, status: :see_other
+        if @type.destroy
+            flash[:danger] = "Type successfully deleted"
+            redirect_to types_path, status: :see_other
+        else
+            flash[:notice] = "There was a problem regarding deletion of this job"
+            redirect_to types_path, status: :see_other
+        end
     end
 
     def edit

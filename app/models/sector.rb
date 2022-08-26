@@ -1,7 +1,8 @@
 class Sector < ApplicationRecord
   paginates_per 9
-  validates :name, presence: true, length: { minimum: 3, maximum: 25 },
-  uniqueness: { case_sensitive: false }
-  belongs_to :user
-  has_many :jobs
+  VALID_NAME = /\A([a-zA-Z]){2}([0-9a-zA-Z_.@\-\s]){1,25}\z/
+  validates :name, presence: true,
+  uniqueness: { case_sensitive: false } , format:{with: VALID_NAME}
+  # belongs_to :user
+  # has_many :jobs
 end
