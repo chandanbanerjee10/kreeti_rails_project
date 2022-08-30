@@ -13,7 +13,7 @@
                 <p> <span> <strong> Skills Required:</strong></span> <%=@job.keyskills%></p>
                 <p> <span> <strong> Sector:</strong></span> <%=@job.sector.name%></p>
                 <p> <span> <strong> Type:</strong></span> <%=@job.type.name%></p>
-                <% if @job.user == current_user || current_user.is_admin?%>
+                <% if @job.user == current_user%>
                   <%=link_to "Post Requests", job_posts_path(@job), class: "btn btn-outline-primary"%>
                   <%= link_to "Edit", edit_job_path(@job), class: "btn btn-outline-success"%>
                   <%= link_to "Delete", job_path(@job), data: {

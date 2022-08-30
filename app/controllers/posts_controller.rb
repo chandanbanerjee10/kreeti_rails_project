@@ -61,7 +61,7 @@ class PostsController < ApplicationController
             redirect_to job_path(@post.job), status: :see_other
         else
             flash[:notice] = "There was some error regarding deletion of this post"
-            redirect_to job_path(@post.job)
+            redirect_to job_path(@post.job), status: :see_other
         end
     end
 

@@ -10,11 +10,12 @@ class UsersController < ApplicationController
         @user = User.new
     end
 
-    def show
+    # def show
 
-    end
+    # end
     
     def edit
+
     end
 
     def create
@@ -48,6 +49,7 @@ class UsersController < ApplicationController
     end
 
     def index
+        binding.pry
         @users = User.page params[:page]
     end
 

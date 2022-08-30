@@ -9,10 +9,11 @@ class ApplicationController < ActionController::Base
     end
 
     def require_admin
+        binding.pry
         if !logged_in? 
             flash[:alert] = "You must be logged in to perform that action"
             redirect_to login_path
-        elsif current_user.role != "admin"
+        elsif current_user.is_admin?
             session[:user_id] = nil
             flash[:alert] = "You must be an admin to perform that action"
             redirect_to login_path
