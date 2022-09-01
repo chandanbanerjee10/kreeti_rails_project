@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     end
 
     def require_admin
-        binding.pry
+        # binding.pry
         if !logged_in? 
             flash[:alert] = "You must be logged in to perform that action"
             redirect_to login_path

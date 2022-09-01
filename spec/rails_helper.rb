@@ -64,3 +64,10 @@ RSpec.configure do |config|
 end
 require_relative 'support/factory_bot'
 require_relative 'support/chrome'
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
