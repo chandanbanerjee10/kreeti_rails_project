@@ -85,3 +85,5 @@ gem 'omniauth-rails_csrf_protection'
 gem "letter_opener", group: :development
 
 gem "pry"
+
+gem 'rails-controller-testing'
