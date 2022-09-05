@@ -6,10 +6,26 @@ FactoryBot.define do
       role { :admin}
     end
   
-    # factory :random_user, class: User do
-    #   username { Faker::Name.username }
-    #   email { Faker::Internet.safe_email }
-    #   password 'password'
-    #   role :candidate
-    # end
+    factory :candidate, class: User do
+      username {'candidate'}
+      email { 'candidate@mail.com'}
+      password {'candidate123'}
+      role {:candidate}
+    end
+
+    factory :recruiter, class: User do
+      username {'recruiter'}
+      email { 'recruiter@mail.com'}
+      password {'recruiter123'}
+      role {:recruiter}
+    end
+
+    factory :user do |f|
+      f.username { Faker::Internet.username }
+      f.email { Faker::Internet.email }
+      password{'password'}
+    end
 end
+
+
+

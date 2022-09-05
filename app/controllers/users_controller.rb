@@ -11,26 +11,26 @@ class UsersController < ApplicationController
     end
 
     def show
-
+  
     end
     
     def edit
-
+        
     end
 
     def create
         @user = User.new(user_params)
         if @user.save && @user.is_candidate?
             session[:user_id] = @user.id
-            flash[:notice] = "candidate was created successfully."
+            flash[:success] = "candidate was created successfully."
             redirect_to @user
         elsif @user.save && @user.is_recruiter?
             session[:user_id] = @user.id
-            flash[:notice] = "recruiter was created successfully."
+            flash[:success] = "recruiter was created successfully."
             redirect_to @user
         elsif @user.save && @user.is_admin?
             session[:user_id] = @user.id
-            flash[:notice] = "admin was created successfully."
+            flash[:success] = "admin was created successfully."
             redirect_to admin_path
         else
             flash[:notice] = "There was a problem creating the user"
