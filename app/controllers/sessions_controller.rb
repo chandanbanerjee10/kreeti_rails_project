@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
     before_action :logged_in_redirect, only: [:new, :create]
     def new
+        
     end
 
     def create
@@ -14,6 +15,7 @@ class SessionsController < ApplicationController
                 redirect_to @user
             end
         else
+            
             flash.now[:danger] = "There is something wrong with your login information"
             render 'new', status: :unprocessable_entity
         end
