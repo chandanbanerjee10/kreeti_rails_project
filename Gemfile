@@ -74,6 +74,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem 'shoulda-matchers', '~> 5.0'
+  # gem 'database_cleaner-active_record'
 end
 gem 'sass-rails'
 gem 'jquery-rails'

@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     end
 
     def update
+
         if @user.update(user_params)
             flash[:notice] = "Your account information was successfully updated!"
             redirect_to @user
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
     def destroy
         if @user.destroy
             session[:user_id] = nil
-            flash[:danger] = "Account successfully deleted"
+            flash[:danger] = "Account successfully deleted"    
             redirect_to root_path, status: :see_other
         else
             flash[:notice] = "There was a problem deleting this account. Please Try again"

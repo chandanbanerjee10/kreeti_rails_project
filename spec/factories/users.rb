@@ -1,3 +1,4 @@
+
 FactoryBot.define do
     factory :admin, class: User do
       username {'admin'}
@@ -20,10 +21,15 @@ FactoryBot.define do
       role {:recruiter}
     end
 
-    factory :user do |f|
-      f.username { Faker::Internet.username }
-      f.email { Faker::Internet.email }
-      password{'password'}
+    factory :valid_user, class: User do 
+      sequence(:username) { |n| "johndoe#{n}"}
+      sequence(:email) { |n| "johndoe#{n}@example.com"}
+      password {'password'}
+      role {:candidate}
+    end
+
+    factory :invalid_user, class: User do
+      username {nil}
     end
 end
 
