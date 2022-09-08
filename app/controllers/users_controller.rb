@@ -11,26 +11,26 @@ class UsersController < ApplicationController
     end
 
     def show
-
+  
     end
     
     def edit
-
+        
     end
 
     def create
         @user = User.new(user_params)
         if @user.save && @user.is_candidate?
             session[:user_id] = @user.id
-            flash[:notice] = "candidate was created successfully."
+            flash[:success] = "candidate was created successfully."
             redirect_to @user
         elsif @user.save && @user.is_recruiter?
             session[:user_id] = @user.id
-            flash[:notice] = "recruiter was created successfully."
+            flash[:success] = "recruiter was created successfully."
             redirect_to @user
         elsif @user.save && @user.is_admin?
             session[:user_id] = @user.id
-            flash[:notice] = "admin was created successfully."
+            flash[:success] = "admin was created successfully."
             redirect_to admin_path
         else
             flash[:notice] = "There was a problem creating the user"
@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     end
 
     def update
+
         if @user.update(user_params)
             flash[:notice] = "Your account information was successfully updated!"
             redirect_to @user
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
     def destroy
         if @user.destroy
             session[:user_id] = nil
-            flash[:danger] = "Account successfully deleted"
+            flash[:danger] = "Account successfully deleted"    
             redirect_to root_path, status: :see_other
         else
             flash[:notice] = "There was a problem deleting this account. Please Try again"

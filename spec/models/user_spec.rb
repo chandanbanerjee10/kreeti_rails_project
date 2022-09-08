@@ -54,12 +54,6 @@ RSpec.describe User, :type => :model do
 
     # Password
 
-    it "must have minimum 6 characters as password" do
-        @user.password = "a"*5 
-        
-        expect(@user).to_not be_valid  
-    end
-
     it "must not have nil value" do
         @user.password_digest = "" 
         expect(@user).to_not be_valid  
