@@ -1,24 +1,24 @@
 class PostsController < ApplicationController
     before_action :require_candidate , only: [:new, :create] 
     before_action :require_admin_recruiter, only:[:index, :destroy]
-    before_action :require_same_recruiter, only:[:index]
     before_action :require_same_post_id, only:[:show]
 
     def new
         @post = Post.new
+        @job = Job.find(params[:job_id])        
     end
 
-    def create  
-        @post = Post.create(post_params)   
+    def create      
+        @post = Post.create(post_params)    
         @job = Job.find(params[:job_id])
-        @post.job = @job
+        @post.job = @job     
         @post.user = current_user 
-        if @post.save
+       if @post.save
           flash[:success] = "Job Post successfully created"
           redirect_to @job
         else
           flash[:danger] = "Incorrect Credentials"
-          redirect_to @job
+          render "new", status: :unprocessable_entity
         end
     end
     
@@ -49,13 +49,13 @@ class PostsController < ApplicationController
             @post.save! 
             flash[:notice] = "Mail has been sent to the candidate"
             RespondMailer.respond_to_candidate(@post).deliver_later
-            redirect_to job_posts_path(@post), status: :see_other
+            redirect_to posts_path, status: :see_other
         end
     end
 
     def reject_candidate
         @post = Post.find(params[:id])
-        RespondMailer.reject_candidate(@post).deliver_later
+        RespondMailer.reject_candidate(@post).deliver_now
         if @post.destroy
             flash[:notice] = "The post has been deleted"
             redirect_to job_path(@post.job), status: :see_other
@@ -68,14 +68,6 @@ class PostsController < ApplicationController
     private
     def post_params
         params.require(:post).permit(:name, :post_description, :username, :phone_number, :city, :file,:job_id)
-    end
-
-    def require_same_recruiter
-        @job = Job.find(params[:job_id])
-        if current_user != @job.user
-            flash[:danger] = "You can't see other recruiters' post requests"
-            redirect_to jobs_path
-        end
     end
 
     def require_same_post_id

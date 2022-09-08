@@ -1,12 +1,9 @@
 <h1 class = "text-center">Job Show</h1>
-
 <%= render 'job'%>
-
 <div class="row mb-4">
-  <div class="col">
-    <%= render 'posts/post_form' if current_user.is_candidate?%>
-  </div>
   <div class="col">
     <%= render 'reviews/review'%>
   </div>
 </div>
+
+<%=link_to "new post", new_post_path(job_id: @job.id) %>

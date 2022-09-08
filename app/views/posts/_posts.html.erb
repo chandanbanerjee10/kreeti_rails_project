@@ -13,7 +13,7 @@
                 <p > <strong>Phone Number:</strong> <%= post.phone_number%></p>
                 <p> <strong> City:</strong> <%=post.city%></p>
                 <div class="text-center">
-                    <%= link_to "View", job_post_path(post.job,post), class: "btn btn-outline-primary"%> 
+                    <%= link_to "View", post_path(post), class: "btn btn-outline-primary"%> 
                 </div>
               </div>
               <div class="card-footer text-muted text-center">

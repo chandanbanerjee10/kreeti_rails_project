@@ -14,7 +14,7 @@
                 <p> <span> <strong> Sector:</strong></span> <%=@job.sector.name%></p>
                 <p> <span> <strong> Type:</strong></span> <%=@job.type.name%></p>
                 <% if @job.user == current_user%>
-                  <%=link_to "Post Requests", job_posts_path(@job), class: "btn btn-outline-primary"%>
+                  <%=link_to "Post Requests", posts_path(job_id: @job.id), class: "btn btn-outline-primary"%>
                   <%= link_to "Edit", edit_job_path(@job), class: "btn btn-outline-success"%>
                   <%= link_to "Delete", job_path(@job), data: {
                     turbo_method: :delete,

@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   # Jobs
   resources :jobs do
     resources :reviews
-    resources :posts
   end
+  resources :posts
   post 'respond_to_candidate/:id', to: 'posts#respond_to_candidate', as: 'respond_to_candidate'
   delete 'reject_candidate/:id', to: 'posts#reject_candidate', as: 'reject_candidate'
   

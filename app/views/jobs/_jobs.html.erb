@@ -10,8 +10,8 @@
               <div class="card-body jobs-body">
                 <h5 class="card-title text-success text-left text-decoration-none"><%= link_to job.title, job_path(job)%></h5>
                 <p class="card-text"><%= truncate(job.job_description, length: 100) %></p>
-                <p > <span>Location:</span> <%= job.job_location%></p>
-                <p> <span> Skills Required:</span> <%=job.keyskills%></p>
+                <p ><span>Location:</span> <%= job.job_location%></p>
+                <p><span> Skills Required:</span> <%=job.keyskills%></p>
                 <div class="text-center">
                   <%= link_to "View", job_path(job), class: "btn btn-outline-primary mx-1"%> 
                   <% if logged_in? && job.user == current_user%>
