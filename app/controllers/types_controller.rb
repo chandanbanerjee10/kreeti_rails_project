@@ -26,10 +26,6 @@ class  TypesController < ApplicationController
             end
         end
     end
-    
-    def show
-        @type = Type.find(params[:id])
-    end
 
     def index
         @types = Type.page params[:page]

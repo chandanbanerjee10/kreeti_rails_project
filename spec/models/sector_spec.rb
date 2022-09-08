@@ -5,7 +5,7 @@ RSpec.describe Sector, :type => :model do
         @sector = Sector.new(name: "Banking")
         @user = User.new(username: "Example User", email: "user@example.com", password: "password")
     end
-
+    
     it "is not valid without an user" do
         expect(@sector).to_not be_valid  
     end
@@ -15,17 +15,17 @@ RSpec.describe Sector, :type => :model do
         expect(@sector).to be_valid  
     end
 
-    it "is not valid with a blank username" do
+    it "is not valid with a blank name" do
         @sector.name = ""
         expect(@sector).to_not be_valid  
     end
 
-    it "is not valid with inappropriate username" do
+    it "is not valid with inappropriate name" do
         @sector.name = "99IT"
         expect(@sector).to_not be_valid  
     end
 
-    it "is valid with appropriate username" do
+    it "is valid with appropriate name" do
         @sector.name = "Manufacturing"
         @sector.user = @user
         expect(@sector).to be_valid  

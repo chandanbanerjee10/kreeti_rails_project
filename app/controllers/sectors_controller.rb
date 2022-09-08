@@ -26,10 +26,6 @@ class  SectorsController < ApplicationController
             end
         end
     end
-    
-    def show
-        @sector = Sector.find(params[:id])
-    end
 
     def index
         @sectors = Sector.page params[:page]

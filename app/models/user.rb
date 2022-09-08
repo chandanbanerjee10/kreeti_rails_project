@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
     # Messages
     has_many :messages, dependent: :destroy
+    
     # Reviews
     has_many :reviews
 

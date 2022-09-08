@@ -15,7 +15,7 @@ RSpec.describe Type, :type => :model do
         expect(@type).to be_valid  
     end
 
-    it "is not valid with a blank username" do
+    it "is not valid with a blank name" do
         @type.name = ""
         expect(@type).to_not be_valid  
     end
@@ -25,7 +25,7 @@ RSpec.describe Type, :type => :model do
         expect(@type).to_not be_valid  
     end
 
-    it "is valid with appropriate username" do
+    it "is valid with appropriate name" do
         @type.name = "SDE-2"
         @type.user = @user
         expect(@type).to be_valid  

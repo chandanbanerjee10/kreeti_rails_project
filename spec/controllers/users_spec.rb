@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe UsersController do
+
   describe 'GET#new' do
     it "requires signup" do
       get :new
@@ -81,7 +82,7 @@ describe UsersController do
     end
   end
 
-  describe "PATCH #Update" do
+  describe "PATCH#Update" do
     before :each do
       @user = create(:valid_user)
     end
@@ -104,7 +105,7 @@ describe UsersController do
         expect(response).to render_template('edit')
       end
 
-      it "redirects to the login page if any other user tries to update" do 
+      it "redirects to the login page if not logged in" do 
         patch :update, params: {id: @user, user: {username: "chandan" } }
         @user.reload
         expect(response).to redirect_to login_path
@@ -112,7 +113,7 @@ describe UsersController do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE#destroy' do
     it "deletes the user and redirects to the root path" do
       user = create(:candidate)
       session[:user_id] = user.id

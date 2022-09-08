@@ -15,6 +15,5 @@ class Job < ApplicationRecord
 
     # Scope
     scope :sector, ->(abc) { joins(:sector).where("name LIKE?", "%#{abc}%")}
-    # Ex:- scope :active, -> {where(:active => true)}
     scope :type, ->(abc) { joins(:type).where("name LIKE?", "%#{abc}%")}
 end

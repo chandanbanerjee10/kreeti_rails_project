@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Sector, :type => :model do
+RSpec.describe Review, :type => :model do
     before do
         @user = User.new(username: "Example User", email: "user@example.com", password: "password")
         @sector = Sector.new(name: "Banking", user: @user)
