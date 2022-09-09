@@ -121,7 +121,7 @@ describe UsersController do
         delete :destroy, params: {id: user}
       }.to change(User, :count).by(-1)
       expect(response).to redirect_to root_path 
-      expect(flash[:danger]).to match("Account successfully deleted") 
+      expect(flash[:danger]).to eq("Account successfully deleted") 
     end
   end
 end

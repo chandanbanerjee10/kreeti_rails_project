@@ -15,7 +15,7 @@ RSpec.describe Review, :type => :model do
             type: @type,
             user: @user
         )
-        @review = Review.new(content: "This is a good job", user: @user, job: @job)
+        @review = Review.create(content: "This is a good job", user: @user, job: @job)
     end
     
     it "is not valid for a blank review" do

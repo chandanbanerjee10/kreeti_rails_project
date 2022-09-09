@@ -13,6 +13,9 @@
                 <p> <span> <strong> Skills Required:</strong></span> <%=@job.keyskills%></p>
                 <p> <span> <strong> Sector:</strong></span> <%=@job.sector.name%></p>
                 <p> <span> <strong> Type:</strong></span> <%=@job.type.name%></p>
+                <%if current_user.is_candidate?%>
+                  <%=link_to "Apply for this Job", new_post_path(job_id: @job.id), class: "btn btn-primary"%>
+                <%end%>
                 <% if @job.user == current_user%>
                   <%=link_to "Post Requests", posts_path(job_id: @job.id), class: "btn btn-outline-primary"%>
                   <%= link_to "Edit", edit_job_path(@job), class: "btn btn-outline-success"%>
