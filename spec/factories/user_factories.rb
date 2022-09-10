@@ -7,8 +7,8 @@ FactoryBot.define do
     end
   
     factory :candidate, class: User do
-      username {'candidate'}
-      email { 'candidate@mail.com'}
+      sequence(:username) {|n|"candidate#{n}"}
+      sequence(:email) {|n| "candidate#{n}@mail.com"}
       password {'candidate123'}
       role {:candidate}
     end

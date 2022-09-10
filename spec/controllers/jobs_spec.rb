@@ -134,6 +134,7 @@ describe JobsController do
         before :each do
             @job = create(:job)
         end
+        
         it "deletes the job and redirects to the jobs list page" do
           session[:user_id] = @job.user.id
           expect{
@@ -142,5 +143,5 @@ describe JobsController do
           expect(response).to redirect_to jobs_path 
           expect(flash[:success]).to eq("Job is successfully deleted.") 
         end
-      end
+    end
 end

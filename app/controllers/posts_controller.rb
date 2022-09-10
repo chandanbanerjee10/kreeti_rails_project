@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     before_action :require_candidate , only: [:new, :create] 
-    before_action :require_admin_recruiter, only:[:index, :destroy]
-    before_action :require_same_post_id, only:[:show]
+    before_action :require_recruiter, only: [:index, :destroy, :show]
+    before_action :require_same_post_id, only: [:show, :destroy]
 
     def new
         @post = Post.new
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     def destroy
         @post = Post.find(params[:id])
         if @post.destroy
-            flash[:danger] = "Job post successfully deleted"
+            flash[:success] = "Job post successfully deleted"
             redirect_to job_path(@post.job), status: :see_other
         else
             flash[:danger] = "There was a problem regarding deletion of this post"
@@ -75,7 +75,7 @@ class PostsController < ApplicationController
             @post = Post.find(params[:id])
             job_ids = current_user.jobs.ids
             if !job_ids.include? @post.job.id
-                flash[:danger] = "You can't see other applicants' post other than your posted job"
+                flash[:danger] = "You can't see or modify other applicants' post other than your posted job"
                 redirect_to jobs_path
             end
         end
