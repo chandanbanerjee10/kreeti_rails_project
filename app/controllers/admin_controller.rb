@@ -1,5 +1,4 @@
 class AdminController < ApplicationController
-    before_action :require_user
     before_action :require_admin
     def home
         
@@ -18,9 +17,10 @@ class AdminController < ApplicationController
         if @job.save
             @job.approved_by = current_user.id
             @job.save!
-            flash[:notice] = "Job was approved successfully."
+            flash[:notice] = "Job was approved successfully"
             redirect_to admin_job_requests_path, status: :see_other
         else
+            debugger
             flash[:notice] = "There was an error regarding saving this job"
             redirect_to admin_job_requests_path
         end
@@ -29,7 +29,7 @@ class AdminController < ApplicationController
     def job_reject
         @job = Job.find(params[:id])
         if @job.destroy
-            flash[:success] = 'Job is successfully deleted.'
+            flash[:success] = 'Job is successfully deleted'
             redirect_to admin_job_requests_path, status: :see_other
         else
             flash[:danger] = "There was an error regarding deleting this job. Please try after somethime"

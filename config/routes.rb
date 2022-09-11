@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
-  get "about", to: "pages#about"
 
   #  Users
   get 'signup', to: 'users#new'
   resources :users, except: [:new]
   get "users/:id/my_posts", to: "users#my_posts", as: 'my_posts' 
   get "users/:id/my_jobs", to: "users#my_jobs", as: 'my_jobs' 
+
   #  Admin
   get 'admin', to: 'admin#home'   
   get 'admin/job_requests', to: 'admin#job_requests'

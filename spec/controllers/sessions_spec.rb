@@ -9,8 +9,26 @@ describe SessionsController do
     end
 end
 
+def stub_omniauth
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+      provider: "google_oauth2",
+        uid: "12345678910",
+        info: {
+          name: "chandan banerjee",
+          email: "chandan@gmail.com",
+          first_name: "chandan",
+          last_name: "banerjee"
+        },
+        credentials: {
+          token: "abcdefg12345",
+          refresh_token: "abcdefg12345",
+          expires_at: DateTime.now,
+        }
+    })
+end
 
-RSpec.feature "Sessions create, destroy and omniauth" do
+RSpec.feature "Sessions create, destroy and Google Login" do
     describe "POST#create" do
         before :each do
             @user = create(:candidate)
@@ -64,11 +82,14 @@ RSpec.feature "Sessions create, destroy and omniauth" do
     end
 
     describe "sessions#omniauth" do
-        scenario "Log in with google feature" do
-            visit "/"
+        scenario "using google oauth2 'omniauth'" do
+            stub_omniauth
+            visit root_path
             click_link 'Login'
-            click_button 'Log in with Google'
+            click_button "Log in with Google"
+            expect(page).to have_content("chandan banerjee")
             expect(page).to have_content("You have logged in successfully")
+            expect(page).to have_content("Logout")
         end
     end
 end
