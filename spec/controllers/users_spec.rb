@@ -124,4 +124,22 @@ describe UsersController do
       expect(flash[:danger]).to eq("Account successfully deleted") 
     end
   end
+
+  describe 'GET#my_posts' do
+    it "renders all the posts of the candidate" do
+      candidate = create(:candidate)
+      session[:user_id] = candidate.id
+      get :my_posts, params: {id: candidate}
+      expect(response).to render_template('my_posts')
+    end
+  end
+
+  describe 'GET#my_jobs' do
+    it "renders all the approved jobs posted by the recruiter" do
+      recruiter = create(:recruiter)
+      session[:user_id] = recruiter.id
+      get :my_jobs, params: {id: recruiter}
+      expect(response).to render_template('my_jobs')
+    end
+  end
 end

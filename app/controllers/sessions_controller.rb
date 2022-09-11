@@ -15,14 +15,9 @@ class SessionsController < ApplicationController
                 redirect_to @user
             end
         else
-            
-            flash.now[:danger] = "There is something wrong with your login information"
+            flash[:danger] = "There is something wrong with your login information"
             render 'new', status: :unprocessable_entity
         end
-    end
-
-    def show
-
     end
 
     def destroy
@@ -39,6 +34,7 @@ class SessionsController < ApplicationController
         end
         if user.valid?
             session[:user_id] = user.id
+            flash[:notice] = "You have logged in successfully"
             redirect_to user_path(user)
         else
             flash[:notice] = "There is something wrong with your login info"

@@ -1,6 +1,7 @@
-# FactoryBot.define do
-#     factory :message, class: Message do
-#         user factory: :candidate
-#         body {'Hello, Good Morning!'}
-#     end
-# end
+FactoryBot.define do
+    factory :review, class: Review do
+        user factory: :candidate
+        job factory: :job
+        content {'Working here will give you a great experience'}
+    end
+end

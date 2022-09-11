@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-
+    before_action :require_user
+    
     def create
         @job = Job.find(params[:job_id])
         @review = @job.reviews.create(review_params)
