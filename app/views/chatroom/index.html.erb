@@ -11,7 +11,7 @@
             </div>    
             <div class="container" id = "message-submit">  
                 <%= form_for(@message, html: {class: "input-group mb-3"}, url: message_path, method: :post, local: true, data: {turbo_frame: "messages"}) do |f|%>
-                        <%= f.text_field :body, placeholder: "Write a message", class: "form-control"%>
+                        <%= f.text_field :body, placeholder: "Write a message",id: "m-body", class: "form-control"%>
                         <div class="input-group-append">
                             <%= f.button "Send", class: "btn btn-outline-secondary", id: "demo"%>
                         </div>
@@ -37,9 +37,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 console.log("yes")
+elem = document.getElementById('m-body')
+var objDiv = document.getElementById("message-container");
 $(document).ready(function(){
     $("#demo").click(function(){
-        alert("The paragraph was clicked.");
+        setTimeout(() => {elem.value = ''}, 100);
+        setTimeout(() => {objDiv.scrollTop = objDiv.scrollHeight}, 500);
+        
     });
 });
 </script>

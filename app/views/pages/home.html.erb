@@ -1,7 +1,8 @@
 <h1 class = "text-center">This is Home page</h1>
+<div class="container-fluid text-center">
   <% @jobs.each do |job| %>
     <%if job.approved_by != 0%>
-      <div class="sector-card mx-4 my-4" style="width: 20rem;">
+      <div class="sector-card mx-4 my-4 align-self-center" style="width: 20rem;">
           <div class="col-12 mt-6">
             <div class="card border-warning shadow mb-5 bg-white rounded job-card">
               <div class="card-header text-center font-weight-bold " id = "job-head">    
@@ -23,8 +24,8 @@
           </div>
       </div>
     <%end%>
-<%end%>
-
+  <%end%>
+</div>
 <div class="flickr_pagination d-flex justify-content-center mb-4">
     <%= paginate @jobs%>
 </div>
