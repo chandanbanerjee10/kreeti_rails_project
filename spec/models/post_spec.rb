@@ -117,5 +117,4 @@ RSpec.describe Post, :type => :model do
     context 'associations' do
         it { should belong_to(:job).class_name('Job') }
     end
-
 end

@@ -15,6 +15,7 @@ class  SectorsController < ApplicationController
                 flash[:success] = "Sector successfully created"
                 redirect_to sectors_path
             else
+                flash[:notice] = "There were some errors creating the sector"
                 render 'new' , status: :unprocessable_entity
             end
         else
@@ -22,6 +23,7 @@ class  SectorsController < ApplicationController
                 flash[:success] = "Sector successfully created"
                 redirect_to new_sector_path
             else
+                flash[:notice] = "There were some errors creating the sector"
                 render 'new' , status: :unprocessable_entity
             end
         end
@@ -53,6 +55,7 @@ class  SectorsController < ApplicationController
             flash[:success] = "Sector successfully updated"
             redirect_to sectors_path
         else
+            flash[:notice] = "There were some errors updating the sector"
             render 'edit' , status: :unprocessable_entity
         end
     end

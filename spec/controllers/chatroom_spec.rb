@@ -8,5 +8,12 @@ describe ChatroomController do
             get :index
             expect(response).to render_template("index") 
         end 
+
+        it "rendirects to the login page for non-candidates" do
+            user = create(:recruiter)
+            session[:user_id] = user.id
+            get :index
+            expect(response).to redirect_to login_path
+        end 
     end
 end

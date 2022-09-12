@@ -138,5 +138,5 @@ post2 = Post.create(
     city: 'Chennai',
     user_id: candidate.id,
     job: job1,
-    Rack::Test::UploadedFile.new('app/assets/files/rspec.pdf', 'rspec.pdf') 
+    file: Rack::Test::UploadedFile.new('app/assets/files/rspec.pdf', 'rspec.pdf') 
 )

@@ -7,7 +7,6 @@ RSpec.describe User, :type => :model do
     end
 
     # Username 
-
     it "is not valid with a blank username" do
         @user.username = "" 
         expect(@user).to_not be_valid  
@@ -30,7 +29,6 @@ RSpec.describe User, :type => :model do
     end
 
     # Email
-
     it "is not valid with a blank email" do
         @user.email = "" 
         expect(@user).to_not be_valid  
@@ -53,14 +51,12 @@ RSpec.describe User, :type => :model do
     end
 
     # Password
-
     it "must not have nil value" do
         @user.password_digest = "" 
         expect(@user).to_not be_valid  
     end
 
     # Association Checks
-
     context 'associations' do
         it { should have_many(:posts).class_name('Post') }
     end

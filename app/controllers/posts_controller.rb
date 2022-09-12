@@ -49,7 +49,10 @@ class PostsController < ApplicationController
             @post.save! 
             flash[:notice] = "Mail has been sent to the candidate"
             RespondMailer.respond_to_candidate(@post).deliver_later
-            redirect_to posts_path, status: :see_other
+            redirect_to post_path(@post)
+        else
+            flash[:notice] = "Due to some errors mail cannot be sent"
+            redirect_to post_path(@post)
         end
     end
 

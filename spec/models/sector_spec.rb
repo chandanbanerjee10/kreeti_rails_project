@@ -39,7 +39,6 @@ RSpec.describe Sector, :type => :model do
     end
 
     # Association Checks
-    
     context 'associations' do
         it { should have_many(:jobs).class_name('Job') }
     end

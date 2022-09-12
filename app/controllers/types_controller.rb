@@ -12,16 +12,18 @@ class  TypesController < ApplicationController
         @type.user = current_user
         if current_user.is_admin?
             if @type.save
-            flash[:success] = "Type successfully created"
-            redirect_to types_path
+                flash[:success] = "Type successfully created"
+                redirect_to types_path
             else
-            render 'new' , status: :unprocessable_entity
+                flash[:notice] = "There were some errors creating the type"
+                render 'new' , status: :unprocessable_entity
             end
         else
             if @type.save
                 flash[:success] = "Type successfully created"
                 redirect_to new_type_path
             else
+                flash[:notice] = "There were some errors creating the type"
                 render 'new' , status: :unprocessable_entity
             end
         end
@@ -53,6 +55,7 @@ class  TypesController < ApplicationController
             flash[:success] = "Type successfully updated"
             redirect_to types_path
         else
+            flash[:notice] = "There were some errors updating the type"
             render 'edit' , status: :unprocessable_entity
         end
     end

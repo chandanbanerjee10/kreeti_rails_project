@@ -30,6 +30,7 @@ class JobsController < ApplicationController
           flash[:success] = "Job successfully created and pending for admin approval"
           redirect_to jobs_path
         else
+          flash[:notice] = "Job cannot be created due to some errors"
           render 'new', status: :unprocessable_entity
         end
     end
@@ -44,6 +45,7 @@ class JobsController < ApplicationController
           flash[:success] = "Job was successfully updated"
           redirect_to jobs_path
         else
+          flash[:notice] = "Job cannot be updated due to some errors"
           render 'edit', status: :unprocessable_entity
         end
     end

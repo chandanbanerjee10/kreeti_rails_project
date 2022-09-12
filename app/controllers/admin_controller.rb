@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
     before_action :require_admin
+
     def home
-        
     end
 
     def job_requests
@@ -20,7 +20,6 @@ class AdminController < ApplicationController
             flash[:notice] = "Job was approved successfully"
             redirect_to admin_job_requests_path, status: :see_other
         else
-            debugger
             flash[:notice] = "There was an error regarding saving this job"
             redirect_to admin_job_requests_path
         end

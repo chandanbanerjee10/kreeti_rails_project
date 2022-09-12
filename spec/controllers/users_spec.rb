@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe UsersController do
-
   describe 'GET#new' do
     it "requires signup" do
       get :new
