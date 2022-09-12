@@ -1,17 +1,17 @@
 <h2>Reviews</h2>
   <% @job.reviews.each do |review| %>
-    <p>
-    <%if review.user%>
+    <div>
+      <%if review.user%>
         <strong><%= link_to review.user.username, user_path(review.user), class: "reviews"%>:</strong>
         <%= review.content %>
       <%end%>
-    </p>
+    </div>
   <% end %>
-  <h2>Add a review:</h2>
-  <%= form_with model: [ @job, @job.reviews.build ] do |form| %>
-      <div class="form-group col-8 col-xl-4 col-md-6 col-lg-4 offset-2 offset-xl-4 offset-md-3 offset-lg-4 mb-4">  
-        <%= form.text_area :content, class: "form-control" %>
-      </div>
-      <%= form.submit class:"btn btn-success"%>
-  <% end %>
+<h2>Add a review:</h2>
+<%= form_with model: [ @job, @job.reviews.build ] do |form| %>
+    <div class="form-group col-8 col-xl-4 col-md-6 col-lg-4 offset-2 offset-xl-4 offset-md-3 offset-lg-4 mb-4">  
+      <%= form.text_area :content, class: "form-control" %>
+    </div>
+    <%= form.submit class:"btn btn-success"%>
+<% end %>
 

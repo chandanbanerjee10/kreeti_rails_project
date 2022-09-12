@@ -4,7 +4,7 @@
         <%if res.length == 0 %>
             <h3 class = "text-success mt-4 mb-4">No Post request is pending</h3>
         <%end%>
-     <% @posts.each do |post| %>
+    <% @posts.each do |post| %>
         <%if post.job == @job && !post.is_approved?%>
             <div class="row justify-content-md-center">
                 <div class="col-6 mt-6">
